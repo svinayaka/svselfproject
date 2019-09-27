@@ -3,15 +3,14 @@ const path = require('path');
 const router = express.Router();
 const PORT = process.env.PORT || 3000;
 const app = express();
-const aboutRoute = require('./controller/about/about-controller');
-const defaultRoute = require('./controller/default/default-controller');
+const home = require("./public/HomePage/home");
 
-app.use('/default', defaultRoute)
-app.use('/about', aboutRoute);
 
-app.get('/', (req, res, next) => {
-    res.sendFile(path.join(__dirname, '/index.html'));
+app.use((req, res, next) => {
+    next();
 })
+
+app.get('/', home);
 
 
 app.listen(PORT, () => {
