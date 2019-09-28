@@ -3,11 +3,10 @@ const router = express.Router();
 const path = require("path")
 const app = express();
 
-app.use("About", express.static("/public/About"));
+app.set("About", path.join(__dirname, "public/About"));
 
 router.get("/", (req, res, next) => {
-    console.log(__dirname);
-    res.send("<p>about</p>");
+    res.render(path.join(__dirname, "/about"));
 });
 
 module.exports = router;
