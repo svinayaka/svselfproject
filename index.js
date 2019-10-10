@@ -11,7 +11,7 @@ const ballGame = require("./public/BallGame/ball");
 
 app.set("view engine", "pug");
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(path.join(__dirname + '/public')));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 app.use("/", home);
@@ -25,7 +25,7 @@ app.get("/info", (req, res, next) => {
 
 app.post("/", (req, res, next) => {
     console.log(req.body);
-    res.send("Response Recieved" + __dirname).status(200);
+    res.send("Response Recieved" + path.basename(__dirname) ).status(200);
 })
 
 
