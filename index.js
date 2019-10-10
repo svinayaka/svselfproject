@@ -25,7 +25,7 @@ app.get("/info", (req, res, next) => {
 
 app.post("/", (req, res, next) => {
     console.log(req.body);
-    res.send("Response Recieved" + path.basename(__dirname) ).status(200);
+    res.send("Response Recieved" + path.basename(__dirname) + " " + path.join(__filename) ).status(200);
 })
 
 
