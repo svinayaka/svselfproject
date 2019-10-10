@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet"  type="text/css" href="/ballGame/ball.css" >
+    <title>Document</title>
+</head>
+<body>
+    <section>
+        Score: <span class="score"></span>
+        Lives: <span class="lives"></span>
+    </section>
+    <section class="container">
+
+    </section>
+    <script>
+        const container = document.querySelector(".container");
+        const contDim = container.getBoundingClientRect();
+        const gameOver = document.createElement('div');
+        gameOver.textContent = "Start Game";
+        gameOver.style.position = "absolute";
+        gameOver.style.color = "white";
+        gameOver.style.lineHeight = "300px";
+        gameOver.style.textAlign = "center";
+        gameOver.style.fontSize = "3em";
+        gameOver.style.textTransform = "uppercase";
+        gameOver.style.backgroundColor = "red";
+        gameOver.style.width = "100%";
+        gameOver.addEventListener("click", startGame);
+        container.appendChild(gameOver);
+        const ball = document.createElement("div");
+        ball.style.position = "absolute";
+        ball.style.width = "20px";
+        ball.style.height = "20px";
+        ball.style.backgroundColor = "white";
+        ball.style.borderRadius = "25px";
+        container.appendChild(ball);
+        const paddle = document.createElement("div");
+        paddle.style.position = "absolute";
+        paddle.style.backgroundColor = "white";
+        paddle.style.height = "20px";
+        paddle.style.width = "150px";
+        paddle.style.borderRadius = "25px";
+        paddle.style.bottom = "30px";
+        paddle.style.left = "50%";
+        container.appendChild(paddle);
+        function startGame() {
+            console.log("Started!")
+        }
+    </script>
+</body>
+</html>
