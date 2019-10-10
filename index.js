@@ -18,7 +18,7 @@ app.use("/", home);
 app.use("/about", about);
 app.use("/parallex", parallex);
 app.use("/ballGame", ballGame)
-
+console.log(__dirname);
 app.get("/info", (req, res, next) => {
     res.render(path.join(__dirname, "public/About/about"));
 });
