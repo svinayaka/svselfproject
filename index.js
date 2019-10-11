@@ -28,7 +28,6 @@ app.post("/", (req, res, next) => {
     res.sendFile(path.join(__dirname, "/public/BallGame/ball.css"));
 })
 
-
 app.listen(PORT, () => {
     console.log(`Listening to the port: ${PORT}`);
 });
