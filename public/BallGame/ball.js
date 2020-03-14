@@ -6,7 +6,6 @@ const router = express.Router();
 app.set("ballGame", path.join(__dirname, "public/BallGame"));
 
 router.get("/", (req, res, next) => {
-  
     res.sendFile(path.join(__dirname, "/ball.html"));
 });
 
