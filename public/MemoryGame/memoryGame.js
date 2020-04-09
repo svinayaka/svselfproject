@@ -36,13 +36,16 @@
     function cardHandler(event) {
         var clickedElm = Array.from(event.target.parentElement.parentElement.children).indexOf(event.target.parentElement);
         selectedCards.push(memoryList[clickedElm]);
-        validateSelectedCard();
+        validateSelectedCard(event);
     }
 
-    function validateSelectedCard() {
+    function validateSelectedCard(event) {
         var count = selectedCards.length;
         if (count >= 2) {
-            checkResults();
+            flipCardBackWard(event);
+            checkResults(event);
+        } else {
+            flipCardBackWard(event);
         }
     }
 
@@ -54,6 +57,10 @@
         } else {
             selectedCards.length = 0;
         }
+    }
+
+    function flipCardBackWard() {
+
     }
     
     createCards();
