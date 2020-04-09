@@ -1,7 +1,7 @@
 (function() {
     var memoryList = [1,2,3,4,5,6,7,8,1,2,3,4,5,6,7,8];
-    var flickNumber = 0;
     var selectedCards = [];
+    var results = [];
     function createCards() {
         var fragmentDiv = document.createDocumentFragment('div');
         var gameElm = document.getElementById('game');
@@ -36,13 +36,23 @@
     function cardHandler(event) {
         var clickedElm = Array.from(event.target.parentElement.parentElement.children).indexOf(event.target.parentElement);
         selectedCards.push(memoryList[clickedElm]);
-        validateSelectedCard()
+        validateSelectedCard();
     }
 
     function validateSelectedCard() {
         var count = selectedCards.length;
         if (count >= 2) {
-            
+            checkResults();
+        }
+    }
+
+    function checkResults() {
+        var resultMatch = (selectedCards[0] == selectedCards[1]) ? true : false;
+        if (resultMatch) {
+            console.log('Matches!')
+            selectedCards.length = 0;
+        } else {
+            selectedCards.length = 0;
         }
     }
     
