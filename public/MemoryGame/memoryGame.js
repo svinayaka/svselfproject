@@ -49,17 +49,18 @@
         }
     }
 
-    function checkResults() {
+    function checkResults(event) {
         var resultMatch = (selectedCards[0] == selectedCards[1]) ? true : false;
         if (resultMatch) {
             console.log('Matches!')
             selectedCards.length = 0;
+            
         } else {
             selectedCards.length = 0;
         }
     }
 
-    function flipCardBackWard() {
+    function flipCardBackWard(event) {
 
     }
     
