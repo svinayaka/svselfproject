@@ -11,6 +11,7 @@ const ballGame = require("./public/BallGame/ball");
 const pagination = require("./public/pagination/pagination-router");
 const websiteDesign = require("./public/websiteDesign/websiteDesign-router");
 const socketIO = require("./public/SocketIO/Socket-router");
+const memorygame = require("./public/MemoryGame/memoryGame.router");
 
 app.set("view engine", "pug");
 
@@ -24,6 +25,7 @@ app.use("/ballGame", ballGame)
 app.use("/pagination", pagination);
 app.use("/websiteDesign", websiteDesign);
 app.use("/socketio", socketIO);
+app.use('/memorygame', memorygame);
 
 
 app.post("/", (req, res, next) => {
