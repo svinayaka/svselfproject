@@ -6,10 +6,15 @@ body {
     color: red;
 }
 
+#h1 {
+    text-align: center;
+    text-shadow: 2px 2px 6px white;
+}
+
 .cards {
     border: 1px solid lightblue;
-    height: 100px;
-    width: 100px;
+    height: 25vh;
+    width: 25%;
     position: relative;
 }
 
@@ -20,6 +25,7 @@ body {
     user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
+    cursor: pointer;
 }
 .back {
     position: absolute;
@@ -28,8 +34,17 @@ body {
     user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
+    cursor: pointer;
 }
 
 #game {
+    float: left;
     display: flex;
+    width: 70%;
+    flex-wrap: wrap;
+}
+
+#updates {
+    width: 30%;
+    float: right;
 }
