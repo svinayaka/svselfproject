@@ -28,7 +28,14 @@ body {
     cursor: pointer;
     line-height: 25vh;
     text-align: center;
+    transform: rotateY(0deg);
+    backface-visibility: hidden;
+    transition: 1s;
 }
+.front:hover {
+    transform: rotateY(180deg);
+}
+
 .back {
     position: absolute;
     height: 100%;
@@ -39,6 +46,13 @@ body {
     cursor: pointer;
     line-height: 25vh;
     text-align: center;
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+    transition: 1s;
+}
+.back:hover {
+    transform: rotateY(0deg);
+    
 }
 
 #game {
