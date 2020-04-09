@@ -31,6 +31,7 @@ body {
     transform: rotateY(0deg);
     backface-visibility: hidden;
     transition: 1s;
+    background: lightblue;
 }
 
 .back {
@@ -46,6 +47,7 @@ body {
     transform: rotateY(180deg);
     backface-visibility: hidden;
     transition: 1s;
+    background: lightgreen;
 }
 
 #game {
