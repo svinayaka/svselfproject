@@ -17,11 +17,17 @@ body {
     position: absolute;
     height: 100%;
     width: 100%;
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 .back {
     position: absolute;
     height: 100%;
     width: 100%;
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 #game {
