@@ -5,3 +5,25 @@ body {
 .head {
     color: red;
 }
+
+.cards {
+    border: 1px solid lightblue;
+    height: 100px;
+    width: 100px;
+    position: relative;
+}
+
+.front {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+.back {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+#game {
+    display: flex;
+}

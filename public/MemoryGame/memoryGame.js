@@ -7,6 +7,7 @@
             var card = document.createElement('div');
             var backCard =  backCards(id+1);
             var frontCard =  frontCards(id+1);
+            card.classList = 'cards'
             card.appendChild(backCard);
             card.appendChild(frontCard);
             fragmentDiv.append(card);
