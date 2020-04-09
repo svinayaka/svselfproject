@@ -27,7 +27,12 @@
         frontElm.classList = 'front';
         frontElm.id = `front${id}`;
         frontElm.innerHTML = 'Front';
+        frontElm.onclick = cardHandler.bind(this);
         return frontElm;
+    }
+
+    function cardHandler() {
+
     }
     createCards();
 })()
