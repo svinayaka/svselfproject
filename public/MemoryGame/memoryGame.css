@@ -26,6 +26,8 @@ body {
     -webkit-user-select: none;
     -ms-user-select: none;
     cursor: pointer;
+    line-height: 25vh;
+    text-align: center;
 }
 .back {
     position: absolute;
@@ -35,6 +37,8 @@ body {
     -webkit-user-select: none;
     -ms-user-select: none;
     cursor: pointer;
+    line-height: 25vh;
+    text-align: center;
 }
 
 #game {
