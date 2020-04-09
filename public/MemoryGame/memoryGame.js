@@ -54,14 +54,14 @@
         if (resultMatch) {
             console.log('Matches!')
             selectedCards.length = 0;
-            
         } else {
             selectedCards.length = 0;
         }
     }
 
     function flipCardBackWard(event) {
-
+        event.target.style.transform = "rotateY(90deg)";
+        event.target.previousElementSibling.style.transform = "rotateY(0deg)";
     }
     
     createCards();
