@@ -12,10 +12,11 @@ body {
 }
 
 .cards {
-    border: 1px solid lightblue;
+    border: 1px solid lightgray;
     height: 25vh;
     width: 24%;
     position: relative;
+    margin: 2px;
 }
 
 .front {
