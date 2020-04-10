@@ -153,10 +153,11 @@
         selectedCards = [];
         score = 0;
         results = [];
-        tries = 8;
+        
         timer = 60;
         removeClickEventHandler = {};
         memoryList = shuffleArray(List1).concat(shuffleArray(List2));
+        tries = memoryList.length;
         totalScore = memoryList.length/2;
         
         startTimer();
