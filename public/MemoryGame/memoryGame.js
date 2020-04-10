@@ -1,4 +1,6 @@
 (function() {
+    'use strict';
+
     let memoryList = null;
     let selectedCards = null;
     let tries = null;
@@ -6,6 +8,7 @@
     let totalScore = null;
     let score = null;
     let results = null;
+    let interval = null;
     let removeClickEventHandler = null;
 
     function createCards() {
@@ -158,7 +161,7 @@
         cards.forEach((eachCard) => {
             eachCard.children[1].onclick = null;
         })
-        
+        window.clearInterval(interval);
     }
 
     const startGameElm = document.getElementById('newGame');
@@ -170,8 +173,8 @@
         results = [];
         timer = 60;
         removeClickEventHandler = {};
-        // memoryList = shuffleArray(List1).concat(shuffleArray(List2));
-        memoryList = (List1).concat((List2));
+        memoryList = shuffleArray(List1).concat(shuffleArray(List2));
+        // memoryList = (List1).concat((List2));
         tries = memoryList.length;
         totalScore = memoryList.length/2;
 
