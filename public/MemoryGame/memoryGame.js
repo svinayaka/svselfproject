@@ -126,9 +126,19 @@
             --timer;
             timerElm.innerText = `Timer: ${timer}`;
             if (timer <= 0) {
-                clearInterval(interval);
+                window.clearInterval(interval);
+                stopGame();
             }
         }, 1000)
+    }
+
+    function stopGame() {
+        const gameElm = document.getElementById('game');
+        const cards = Array.from(gameElm.children);
+        cards.forEach((eachCard) => {
+            eachCard.children[1].onclick = null;
+        })
+        
     }
 
     const startGameElm = document.getElementById('newGame');
