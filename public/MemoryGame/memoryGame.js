@@ -83,9 +83,9 @@
             removeHandlers.forEach((eachEvent) => removeClickEventHandler[eachEvent].onclick = null);
             incrementScores();
             selectedCards.length = 0;
+            validateGameCompletion(removeHandlers);
             removeClickEventHandler = {};
             ++tries;
-            validateTries();
         } else {
             reverseflipCardBackWard(removeHandlers, removeClickEventHandler);
             selectedCards.length = 0;
@@ -93,6 +93,18 @@
             --tries;
         }
         validateTries();
+        
+    }
+
+    function validateGameCompletion(removeHandlers) {
+        removeHandlers.forEach((eachHandler) => {
+            results.push(eachHandler);
+        });
+        if (results.length == memoryList.length) {
+            stopGame();
+        }
+        
+        debugger;
     }
 
     function validateTries() {
@@ -156,13 +168,13 @@
         selectedCards = [];
         score = 0;
         results = [];
-        
         timer = 60;
         removeClickEventHandler = {};
-        memoryList = shuffleArray(List1).concat(shuffleArray(List2));
+        // memoryList = shuffleArray(List1).concat(shuffleArray(List2));
+        memoryList = (List1).concat((List2));
         tries = memoryList.length;
         totalScore = memoryList.length/2;
-        
+
         updateScore();
         startTimer();
         validateTries();
