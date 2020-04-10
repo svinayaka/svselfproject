@@ -1,6 +1,8 @@
 (function() {
     let memoryList = null;
     let selectedCards = null;
+    let tries = null;
+    let timer = null;
     let totalScore = null;
     let score = null;
     let results = null;
@@ -85,6 +87,14 @@
             reverseflipCardBackWard(removeHandlers, removeClickEventHandler);
             selectedCards.length = 0;
             removeClickEventHandler = {};
+            --tries;
+        }
+        validateTries();
+    }
+
+    function validateTries() {
+        if (tries <= 0) {
+            
         }
     }
 
@@ -108,6 +118,19 @@
         event.target.previousElementSibling.style.transform = "rotateY(0deg)";
     }
 
+    function startTimer() {
+        let clearInterval = null;
+        const timerElm = document.getElementById('timer');
+        timerElm.innerText = `Timer: ${timer}`;
+        interval = setInterval(() => {
+            --timer;
+            timerElm.innerText = `Timer: ${timer}`;
+            if (timer <= 0) {
+                clearInterval(interval);
+            }
+        }, 1000)
+    }
+
     const startGameElm = document.getElementById('newGame');
     startGameElm.addEventListener('click', () => {
         memoryList = [1,2,3,4,5,6,7,8,1,2,3,4,5,6,7,8];
@@ -115,8 +138,11 @@
         totalScore = memoryList.length/2;
         score = 0;
         results = [];
+        tries = 3;
+        timer = 60;
         removeClickEventHandler = {};
         memoryList = shuffleArray(memoryList);
+        startTimer();
         createCards();
     })
 })()
