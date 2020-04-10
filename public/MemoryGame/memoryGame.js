@@ -105,6 +105,9 @@
 
     function incrementScores() {
         score++;
+        updateScore();
+    }
+    function updateScore() {
         let scoreElm = document.getElementById('score');
         scoreElm.innerText = `Score: ${score}`;   
     }
@@ -160,6 +163,7 @@
         tries = memoryList.length;
         totalScore = memoryList.length/2;
         
+        updateScore();
         startTimer();
         validateTries();
         createCards();
