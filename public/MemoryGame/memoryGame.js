@@ -1,18 +1,18 @@
 (function() {
-    var memoryList = [1,2,3,4,5,6,7,8,1,2,3,4,5,6,7,8];
-    var selectedCards = [];
-    var totalScore = memoryList.length/2;
-    var score = 0;
-    var results = [];
-    var removeClickEventHandler = {};
-    memoryList = shuffleArray(memoryList);
+    let memoryList = null;
+    let selectedCards = null;
+    let totalScore = null;
+    let score = null;
+    let results = null;
+    let removeClickEventHandler = null;
+
     function createCards() {
-        var fragmentDiv = document.createDocumentFragment('div');
-        var gameElm = document.getElementById('game');
+        let fragmentDiv = document.createDocumentFragment('div');
+        let gameElm = document.getElementById('game');
         memoryList.forEach((eachCard, id) => {
-            var card = document.createElement('div');
-            var backCard =  backCards(eachCard, id+1);
-            var frontCard =  frontCards(eachCard, id+1);
+            let card = document.createElement('div');
+            let backCard =  backCards(eachCard, id+1);
+            let frontCard =  frontCards(eachCard, id+1);
             card.classList = 'cards'
             card.appendChild(backCard);
             card.appendChild(frontCard);
@@ -22,10 +22,10 @@
     }
 
     function shuffleArray(cards) {
-        var shuffledCards = []; 
+        let shuffledCards = []; 
         for (let i = cards.length ; i >= 0; i--) {
-            var idx = parseInt(Math.random() * (8 - 0) + 0);
-            var elm = cards.splice(idx, 1)[0];
+            let idx = parseInt(Math.random() * (8 - 0) + 0);
+            let elm = cards.splice(idx, 1)[0];
             if (!isNaN(elm)) {
                 shuffledCards.push(elm);
             } else {
@@ -43,7 +43,7 @@
         return backElm;
     }
     function frontCards(val, id) {
-        var frontElm = document.createElement('div');
+        let frontElm = document.createElement('div');
         frontElm.classList = 'front';
         frontElm.id = `front${id}`;
         frontElm.innerHTML = 'Guess the Card';
@@ -52,7 +52,7 @@
     }
 
     function cardHandler(event) {
-        var clickedElm = Array.from(event.target.parentElement.parentElement.children).indexOf(event.target.parentElement);
+        let clickedElm = Array.from(event.target.parentElement.parentElement.children).indexOf(event.target.parentElement);
         selectedCards.push({ id: clickedElm, val: memoryList[clickedElm]});
         checkEventClickHandler(clickedElm, event);
         validateSelectedCard(event);
@@ -63,7 +63,7 @@
     }
 
     function validateSelectedCard(event) {
-        var count = selectedCards.length;
+        let count = selectedCards.length;
         if (count >= 2) {
             flipCardBackWard(event);
             checkResults(event);
@@ -73,9 +73,9 @@
     }
 
     function checkResults(event) {
-        var resultValMatch = (selectedCards[0].val == selectedCards[1].val) ? true : false;
-        var resultIdDiff = (selectedCards[0].id != selectedCards[1].id) ? true : false;
-        var removeHandlers = Object.keys(removeClickEventHandler);
+        let resultValMatch = (selectedCards[0].val == selectedCards[1].val) ? true : false;
+        let resultIdDiff = (selectedCards[0].id != selectedCards[1].id) ? true : false;
+        let removeHandlers = Object.keys(removeClickEventHandler);
         if (resultValMatch && resultIdDiff) {
             removeHandlers.forEach((eachEvent) => removeClickEventHandler[eachEvent].onclick = null);
             incrementScores();
@@ -89,7 +89,9 @@
     }
 
     function incrementScores() {
-        score = score++;
+        score++;
+        let scoreElm = document.getElementById('score');
+        scoreElm.innerText = `Score: ${score}`;   
     }
 
     function reverseflipCardBackWard(removeHandlers, removeClickEventHandler) {
@@ -98,13 +100,23 @@
                 removeClickEventHandler[eachEvent].style.transform = "rotateY(0deg)";
                 removeClickEventHandler[eachEvent].previousElementSibling.style.transform = "rotateY(90deg)";
             });
-        }, 2000);
+        }, 1500);
     }
 
     function flipCardBackWard(event) {
         event.target.style.transform = "rotateY(90deg)";
         event.target.previousElementSibling.style.transform = "rotateY(0deg)";
     }
-    
-    createCards();
+
+    const startGameElm = document.getElementById('newGame');
+    startGameElm.addEventListener('click', () => {
+        memoryList = [1,2,3,4,5,6,7,8,1,2,3,4,5,6,7,8];
+        selectedCards = [];
+        totalScore = memoryList.length/2;
+        score = 0;
+        results = [];
+        removeClickEventHandler = {};
+        memoryList = shuffleArray(memoryList);
+        createCards();
+    })
 })()
