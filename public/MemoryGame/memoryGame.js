@@ -93,10 +93,12 @@
     }
 
     function reverseflipCardBackWard(removeHandlers, removeClickEventHandler) {
-        removeHandlers.forEach((eachEvent) => {
-            removeClickEventHandler[eachEvent].style.transform = "rotateY(0deg)";
-            removeClickEventHandler[eachEvent].previousElementSibling.style.transform = "rotateY(90deg)";
-        });
+        setTimeout(() => {
+            removeHandlers.forEach((eachEvent) => {
+                removeClickEventHandler[eachEvent].style.transform = "rotateY(0deg)";
+                removeClickEventHandler[eachEvent].previousElementSibling.style.transform = "rotateY(90deg)";
+            });
+        }, 2000);
     }
 
     function flipCardBackWard(event) {
