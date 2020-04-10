@@ -1,7 +1,10 @@
 (function() {
     var memoryList = [1,2,3,4,5,6,7,8,1,2,3,4,5,6,7,8];
     var selectedCards = [];
+    var totalScore = memoryList.length/2;
+    var score = 0;
     var results = [];
+    var removeClickEventHandler = {};
     memoryList = shuffleArray(memoryList);
     function createCards() {
         var fragmentDiv = document.createDocumentFragment('div');
@@ -50,8 +53,13 @@
 
     function cardHandler(event) {
         var clickedElm = Array.from(event.target.parentElement.parentElement.children).indexOf(event.target.parentElement);
-        selectedCards.push(memoryList[clickedElm]);
+        selectedCards.push({ id: clickedElm, val: memoryList[clickedElm]});
+        checkEventClickHandler(clickedElm, event);
         validateSelectedCard(event);
+    }
+
+    function checkEventClickHandler(clickedElm, event) {
+        removeClickEventHandler[clickedElm] = event.target; 
     }
 
     function validateSelectedCard(event) {
@@ -65,13 +73,30 @@
     }
 
     function checkResults(event) {
-        var resultMatch = (selectedCards[0] == selectedCards[1]) ? true : false;
-        if (resultMatch) {
-            console.log('Matches!')
+        var resultValMatch = (selectedCards[0].val == selectedCards[1].val) ? true : false;
+        var resultIdDiff = (selectedCards[0].id != selectedCards[1].id) ? true : false;
+        var removeHandlers = Object.keys(removeClickEventHandler);
+        if (resultValMatch && resultIdDiff) {
+            removeHandlers.forEach((eachEvent) => removeClickEventHandler[eachEvent].onclick = null);
+            incrementScores();
             selectedCards.length = 0;
+            removeClickEventHandler = {};
         } else {
+            reverseflipCardBackWard(removeHandlers, removeClickEventHandler);
             selectedCards.length = 0;
+            removeClickEventHandler = {};
         }
+    }
+
+    function incrementScores() {
+        score = score++;
+    }
+
+    function reverseflipCardBackWard(removeHandlers, removeClickEventHandler) {
+        removeHandlers.forEach((eachEvent) => {
+            removeClickEventHandler[eachEvent].style.transform = "rotateY(0deg)";
+            removeClickEventHandler[eachEvent].previousElementSibling.style.transform = "rotateY(90deg)";
+        });
     }
 
     function flipCardBackWard(event) {
