@@ -17,6 +17,7 @@ body {
     width: 24%;
     position: relative;
     margin: 2px;
+    font-size: calc(0.5vh + 0.5vw);
 }
 
 .front {
@@ -33,6 +34,7 @@ body {
     backface-visibility: hidden;
     transition: 1s;
     background: lightblue;
+    font-size: inherit;
 }
 
 .back {
@@ -49,6 +51,7 @@ body {
     backface-visibility: hidden;
     transition: 1s;
     background: lightgreen;
+    font-size: inherit;
 }
 
 #game {

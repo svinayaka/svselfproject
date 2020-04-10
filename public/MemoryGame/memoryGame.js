@@ -11,6 +11,7 @@
     function createCards() {
         let fragmentDiv = document.createDocumentFragment('div');
         let gameElm = document.getElementById('game');
+        gameElm.innerHTML = '';
         memoryList.forEach((eachCard, id) => {
             let card = document.createElement('div');
             let backCard =  backCards(eachCard, id+1);
@@ -28,7 +29,7 @@
         for (let i = cards.length ; i >= 0; i--) {
             let idx = parseInt(Math.random() * (8 - 0) + 0);
             let elm = cards.splice(idx, 1)[0];
-            if (!isNaN(elm)) {
+            if (elm) {
                 shuffledCards.push(elm);
             } else {
                 i = cards.length;
@@ -41,7 +42,7 @@
         var backElm = document.createElement('div');
         backElm.classList = 'back';
         backElm.id = `back${id}`;
-        backElm.innerHTML = `CARD${val}`;
+        backElm.innerHTML = `${val}`;
         return backElm;
     }
     function frontCards(val, id) {
@@ -83,6 +84,8 @@
             incrementScores();
             selectedCards.length = 0;
             removeClickEventHandler = {};
+            ++tries;
+            validateTries();
         } else {
             reverseflipCardBackWard(removeHandlers, removeClickEventHandler);
             selectedCards.length = 0;
@@ -93,8 +96,10 @@
     }
 
     function validateTries() {
+        const triesElm = document.getElementById('tries');
+        triesElm.innerHTML = `Tries: ${tries}`;
         if (tries <= 0) {
-            
+            stopGame();
         }
     }
 
@@ -143,16 +148,19 @@
 
     const startGameElm = document.getElementById('newGame');
     startGameElm.addEventListener('click', () => {
-        memoryList = [1,2,3,4,5,6,7,8,1,2,3,4,5,6,7,8];
+        var List1 = ['cat','dog','tiger','lion','orange','apple','bannana','ice-cream'];
+        var List2 = ['cat','dog','tiger','lion','orange','apple','bannana','ice-cream'];
         selectedCards = [];
-        totalScore = memoryList.length/2;
         score = 0;
         results = [];
-        tries = 3;
+        tries = 8;
         timer = 60;
         removeClickEventHandler = {};
-        memoryList = shuffleArray(memoryList);
+        memoryList = shuffleArray(List1).concat(shuffleArray(List2));
+        totalScore = memoryList.length/2;
+        
         startTimer();
+        validateTries();
         createCards();
     })
 })()
