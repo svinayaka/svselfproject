@@ -2,6 +2,7 @@
     var memoryList = [1,2,3,4,5,6,7,8,1,2,3,4,5,6,7,8];
     var selectedCards = [];
     var results = [];
+    memoryList = shuffleArray(memoryList);
     function createCards() {
         var fragmentDiv = document.createDocumentFragment('div');
         var gameElm = document.getElementById('game');
@@ -15,6 +16,20 @@
             fragmentDiv.append(card);
         });
         gameElm.appendChild(fragmentDiv);
+    }
+
+    function shuffleArray(cards) {
+        var shuffledCards = []; 
+        for (let i = cards.length ; i >= 0; i--) {
+            var idx = parseInt(Math.random() * (8 - 0) + 0);
+            var elm = cards.splice(idx, 1)[0];
+            if (!isNaN(elm)) {
+                shuffledCards.push(elm);
+            } else {
+                i = cards.length;
+            }
+        }
+        return shuffledCards;
     }
 
     function backCards(val, id) {
