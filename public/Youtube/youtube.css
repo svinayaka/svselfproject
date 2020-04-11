@@ -1,0 +1,24 @@
+* {
+    box-sizing: border-box;
+}
+.youtube-search {
+    display: flex;
+    height: 30px;
+}
+
+.youtube-searchBox {
+    width: 80%;
+    padding: 5px;
+    border: 1px solid lightgray;
+
+}
+.youtube-searchInput, .youtube-searchInput:focus {
+    height: 100%;
+    width: 100%;
+    border: none;
+    outline: none;
+}
+
+.youtube-searchBtn {
+    width: 20%;
+}
