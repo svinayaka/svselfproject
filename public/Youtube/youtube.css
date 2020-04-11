@@ -1,10 +1,25 @@
 * {
     box-sizing: border-box;
 }
+
+.youtube-topHeader {
+    display: flex;
+    width: 100%;
+}
+
+/*------------------------*/
+
 .youtube-search {
+    width: 70%;
     display: flex;
     height: 30px;
 }
+.youtube-filter {
+    width: 30%;
+    height: 30px;
+    position: relative;
+}
+/*------------------------*/
 
 .youtube-searchBox {
     width: 80%;
@@ -21,4 +36,14 @@
 
 .youtube-searchBtn {
     width: 20%;
+}
+
+
+/*-----------------------*/
+.youtube-filterBtn {
+    height: 100%;
+}
+
+.youtube-filterselection {
+    position: absolute;
 }
