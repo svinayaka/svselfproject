@@ -174,7 +174,6 @@
         timer = 60;
         removeClickEventHandler = {};
         memoryList = shuffleArray(List1).concat(shuffleArray(List2));
-        // memoryList = (List1).concat((List2));
         tries = memoryList.length;
         totalScore = memoryList.length/2;
 
