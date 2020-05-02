@@ -13,6 +13,7 @@ const websiteDesign = require("./public/websiteDesign/websiteDesign-router");
 // const socketIO = require("./public/SocketIO/Socket-router");
 const memorygame = require("./public/MemoryGame/memoryGame.router");
 const youtube = require('./public/Youtube/youtube.router');
+const csrf = require('./public/CSRFForm/csrfForm.router');
 
 app.set("view engine", "pug");
 
@@ -28,7 +29,7 @@ app.use("/websiteDesign", websiteDesign);
 // app.use("/socketio", socketIO);
 app.use('/memorygame', memorygame);
 app.use('/youtube', youtube);
-
+app.use('/csrf', csrf);
 
 app.post("/", (req, res, next) => {
     console.log(req.body);
