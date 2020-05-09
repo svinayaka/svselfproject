@@ -2,7 +2,8 @@
     var projectElm = document.getElementById('projectList');
     var projectListFragment = document.createDocumentFragment();
     var projectList = [
-        { txt: 'Memory Game', url: window.location.origin + '/memorygame/' }
+        { txt: 'Memory Game', url: window.location.origin + '/memorygame/' },
+        { txt: 'Web Worker', url: window.location.origin + '/webworker/' }
     ];
     function generateProjectList() {
         projectList.forEach(function (eachProject) {
