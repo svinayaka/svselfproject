@@ -1,9 +1,12 @@
 const express = require('express');
 const path = require('path');
+const session = require('express-session');
 const router = express.Router();
 const PORT = process.env.PORT || 3000;
 const app = express();
 const bodyParser = require("body-parser");
+
+
 const home = require("./public/HomePage/home");
 const about = require("./public/About/about");
 const parallex = require("./public/Parallax_Scrolling/parallax_Scrolling");
@@ -14,10 +17,13 @@ const websiteDesign = require("./public/websiteDesign/websiteDesign-router");
 const memorygame = require("./public/MemoryGame/memoryGame.router");
 const youtube = require('./public/Youtube/youtube.router');
 const csrf = require('./public/CSRFForm/csrfForm.router');
+const carousel = require('./public/Carousel/carousel.router');
+const dashboard = require('./public/DashBoard/dashboard.router');
 
 app.set("view engine", "pug");
 
 app.use(express.static(path.join(__dirname + '/public')));
+app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: false, cookie: { maxAge: 60000 } }));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 app.use("/", home);
@@ -30,6 +36,10 @@ app.use("/websiteDesign", websiteDesign);
 app.use('/memorygame', memorygame);
 app.use('/youtube', youtube);
 app.use('/csrf', csrf);
+app.use('/carousel', carousel);
+app.use('/dashboard', dashboard);
+
+app.use('carouseImage', express.static(path.join(__dirname, '/public/Carousel/images')));
 
 app.post("/", (req, res, next) => {
     console.log(req.body);

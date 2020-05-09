@@ -1,0 +1,11 @@
+:root {
+    --Page-BG-Colour: lightgray;
+}
+
+body {
+    background-color: var(--Page-BG-Colour);
+}
+
+main {
+    text-align: center;
+}
