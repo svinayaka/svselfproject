@@ -20,6 +20,7 @@ const csrf = require('./public/CSRFForm/csrfForm.router');
 const carousel = require('./public/Carousel/carousel.router');
 const dashboard = require('./public/DashBoard/dashboard.router');
 const webworker = require('./public/WebWorker/webworker.router');
+const pwanewsapp = require('./public/PWANewsApp/pwanewsapp.router');
 
 app.set("view engine", "pug");
 
@@ -40,6 +41,7 @@ app.use('/csrf', csrf);
 app.use('/carousel', carousel);
 app.use('/dashboard', dashboard);
 app.use('/webworker', webworker);
+app.use('/pwanewsapp', pwanewsapp);
 
 app.use('carouseImage', express.static(path.join(__dirname, '/public/Carousel/images')));
 
