@@ -2,10 +2,32 @@
 <html lang="en">
     <head>
         <title>Progress Web App</title>
+        <link href="/PWANewsApp/pwanewsapp.css" rel="stylesheet">
     </head>
     <body>
-        sdgsg
-        <link href="/PWANewsApp/pwanewsapp.css" rel="stylesheet">
+        <main>
+
+        </main>
+        <section class="selection">
+            <div class="selection">
+                <div>
+                    <label for="country"> Select your country news
+                        <input id="country" list="countrylist" name="countrylist">
+                        <datalist id="countrylist"></datalist>
+                    </label>
+                </div>
+                <div>
+                    <label for="category"> Select your category news
+                        <input id="category" list="countryCategory" name="countryCategory">
+                        <datalist id="countryCategory"></datalist>
+                    </label>
+                </div>
+            </div>
+            <button id="searchBtn">Search</button>
+        </section>
+        <section>
+            <div id="newsList"></div>
+        </section>
         <script src="/PWANewsApp/pwanewsapp.js"></script>
     </body>
 </html>
