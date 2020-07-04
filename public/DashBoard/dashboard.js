@@ -3,6 +3,7 @@
     var projectListFragment = document.createDocumentFragment();
     var projectList = [
         { txt: 'Memory Game', url: window.location.origin + '/memorygame/' },
+        { txt: 'Card Shuffler', url: window.location.origin + '/cardshuffler/' },
         { txt: 'Web Worker', url: window.location.origin + '/webworker/' }
     ];
     function generateProjectList() {
