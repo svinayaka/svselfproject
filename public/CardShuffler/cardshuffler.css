@@ -1,0 +1,102 @@
+body {
+    margin: 0px;
+}
+
+input[type=button] {
+    background-color: #72C3DC;
+    width: 95%;
+    border-width: 0px 0px 4px 0px;
+    border-style: solid;
+    border-color: #2B8EAD;
+    border-radius: 4px;
+    cursor: pointer;
+    outline: none;
+    color: #ffffff;
+    height: calc(2.2vh + 2.2vw);
+}
+
+#headerTxt {
+    text-align: center;
+    font-size: 1.6rem;
+    margin: 0px;
+    padding: 1%;
+    border-bottom: 5px solid;
+    border-color: gray;
+    background-color: #ffffff;
+    color: #333333;
+}
+.cardContainer {
+    display: flex;
+}
+.cardLayout {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 10;
+}
+.cardAction {
+    flex: 2;
+    padding: 1%;
+    box-sizing: border-box;
+}
+.shuffleAction, .sortAction {
+    text-align: center;
+    box-sizing: border-box;
+    padding: 1%;
+}
+.gridBlock {
+    width: 33%;
+    height: calc(10px + 12vw);
+    text-align: center;
+    line-height: calc(14vw + 1%);
+    font-size: calc(4vw - 1%);
+    color: #ffffff;
+    vertical-align: middle;
+}
+
+.responsive-gridBlock {
+    height: calc(10px + 12vw);
+    text-align: center;
+    font-size: calc(4vw - 1%);
+    vertical-align: middle;
+    width: 100%;
+    color: #333333;
+    line-height: calc(5vh + 6vw);
+    margin: 2px 0px;
+    border-left-width: 1rem;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    border-style: solid;
+}
+
+#footerTxt {
+    text-align: center;
+}
+
+@media screen and (min-width: 0px) and (max-width: 700px) {
+    #headerTxt {
+        background-color: #333333;
+        color: #ffffff;
+    }
+
+    .cardContainer {
+        flex-direction: column-reverse;
+    }
+
+    .cardLayout {
+        padding: 1%;
+    }
+
+    .cardAction {
+        text-align: center;
+    }
+
+    .shuffleAction, .sortAction {
+        display: inline-block;
+        width: 20vw;
+    }
+
+    #shuffleBtn, #sortBtn {
+        width: 100%;
+    }
+}
