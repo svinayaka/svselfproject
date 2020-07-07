@@ -77,28 +77,48 @@ function moviePickerRender() { // this is used for drop down rendering and bindi
 
 
 //-----------------------
-function movieLoadSeats() {
-    updateMovieScreen(moviePickerElm);
+function movieLoadSeats() { // This works for onLoad of the page...
+    updateMovieScreenOnPageLoad(moviePickerElm);
     var movieBookingDetails = fetchSeatsInformation();
     generateMovieSeats(movieBookingDetails);
 }
-
-// This is where seats get rendered and shown...
-function movieUserPicked(event) {
+function movieUserPicked(event) { // This works for on selection within page...
     "use strict";
-    updateMovieScreen(event.target); // this used for updating the screen...
+    updateMovieScreenOnSelection(event.target); // this used for updating the screen...
     var movieBookingDetails = fetchSeatsInformation();
     generateMovieSeats(movieBookingDetails); // this used to render seats with data...
 }
-function updateMovieScreen(elm) {
+//------------------------
+function updateMovieScreenOnPageLoad(elm) {
+    if (window.localStorage.getItem('lastSelected')) {
+        var lastSelectedOption = window.localStorage.getItem('lastSelected');
+        Array.from(elm.options).forEach((eachOptions, id) => {
+            if (eachOptions.dataset.movieType == lastSelectedOption) elm.selectedIndex = id;
+        });
+    }
+    updateMovieScreenOnSelection(elm);
+}
+function updateMovieScreenOnSelection(elm) {
     "use strict";
     movieSelected = elm.selectedOptions[0].dataset.movieType;
     movieScreenSelected = elm.selectedOptions[0].dataset.screenType;
     screenUI.innerHTML = 'Screen ' + movieScreenSelected;
+    window.localStorage.setItem('lastSelected', movieSelected);
 }
 function fetchSeatsInformation() {
     "use strict";
-    return movieBooking.getSeatsList(movieScreenSelected, movieSelected)[0];
+    var movieDetails;
+    if (window.localStorage.getItem(movieSelected)) {
+        var localMovieDetails = JSON.parse(window.localStorage.getItem(movieSelected));
+        movieSelected = localMovieDetails.movie;
+        movieScreenSelected = localMovieDetails.screen;
+        movieDetails = localMovieDetails.movieDetails;
+    } else {
+        movieDetails = movieBooking.getSeatsList(movieScreenSelected, movieSelected)[0];
+        window.localStorage.setItem(movieSelected, JSON.stringify({ screen: movieScreenSelected, movie: movieSelected, movieDetails: movieDetails }));
+    }
+    window.localStorage.removeItem(movieSelected)
+    return movieDetails;
 }
 function generateMovieSeats(movieBookingDetails) {
     "use strict";
@@ -135,6 +155,7 @@ function seatSelectionToggler(event) {
     var selectedScreen = seatInfo.seatScreen;
     var selectedMovie = seatInfo.seatMovie;
     var bookingInfo = movieBooking.bookSeats(selectedScreen, selectedMovie, selectedSeat);
+    debugger;
     bookstatuCheck(event.target, bookingInfo.status);
 }
 function bookstatuCheck(elm, status) {
