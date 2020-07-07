@@ -87,22 +87,23 @@ function showMovieSeats(seatsInfo) {
             rowSeatsFragment.appendChild(rowSeats);
             seatsElm.appendChild(rowSeatsFragment);
             // col creation
-            var colSeats = document.createElement('div');
-            var colSeatsLabels = document.createTextNode(eachSeats.SeatNumber);
-            colSeats.classList.add('seats');
-            colSeats.appendChild(colSeatsLabels);
-            colSeatsFragment.appendChild(colSeats);
+            makeSeats(eachSeats);
+            colSeatsFragment.appendChild(makeSeats(eachSeats));
         } else {
-             // col creation
-            var colSeats = document.createElement('div');
-            var colSeatsNumbering = document.createElement('span');
-            var colSeatsLabels = document.createTextNode(eachSeats.SeatNumber);
-            colSeats.classList.add('seats');
-            colSeatsNumbering.appendChild(colSeatsLabels);
-            colSeats.appendChild(colSeatsNumbering);
-            colSeatsFragment.appendChild(colSeats);
+            // col creation
+            makeSeats(eachSeats);
+            colSeatsFragment.appendChild(makeSeats(eachSeats));
         }
     });
+}
+function makeSeats(eachSeats) {
+    var colSeats = document.createElement('div');
+    var colSeatsNumbering = document.createElement('span');
+    var colSeatsLabels = document.createTextNode(eachSeats.SeatNumber);
+    colSeats.classList.add('seats');
+    colSeatsNumbering.appendChild(colSeatsLabels);
+    colSeats.appendChild(colSeatsNumbering);
+    return colSeats;
 }
 function generateMovieList(movieList, className) {
     var listFragment = document.createDocumentFragment();
