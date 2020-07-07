@@ -72,6 +72,7 @@ function movieUserPicked(event) {
 }
 function showMovieSeats(seatsInfo) {
     var seatsElm = document.getElementById('screenSeatsDisplayed');
+    seatsElm.innerHTML = '';
     var rowSeatsLimit = seatsInfo.seatsLimit;
     var rowSeatsFragment = document.createDocumentFragment();
     var colSeatsFragment = document.createDocumentFragment();

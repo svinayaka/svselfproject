@@ -12,6 +12,25 @@ body {
     background-color: steelblue;
 }
 
+.movie-container {
+    padding: 1%;
+}
+.screenViewContainer {
+    perspective: 100px;
+    position: relative;
+    text-align: center;
+}
+.screenView {
+    height: 60px;
+    width: 80%;
+    background: white;
+    transform-style: preserve-3d;
+    transform: rotateX(10deg);
+    display: inline-block;
+}
+.screenseatsInfo {
+    width: 70%;
+}
 .seatsPosition {
     display: flex;
     flex-direction: row;
