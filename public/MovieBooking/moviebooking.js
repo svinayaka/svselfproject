@@ -44,8 +44,8 @@ var movieScreenSelected;
 function initApplication() {
     "use strict";
     var movies = [
-        { movie:'Avengers', perseatprice: '250', currency:'rs', totalSeatsBooked: '', totalSeats: 48, booking: [], screen: '1', timing: '2:30PM' },
-        { movie:'Bell Bottom', perseatprice: '250', currency:'rs', totalSeatsBooked: '', totalSeats: 35, booking: [], screen: '2', timing: '3:30PM' }
+        { movie:'Avengers', perseatprice: '250', currency:'rs', totalSeatsBooked: '', seatsLimit:8, totalSeats: 48, booking: [], screen: '1', timing: '2:30PM' },
+        { movie:'Bell Bottom', perseatprice: '250', currency:'rs', totalSeatsBooked: '', seatsLimit:8, totalSeats: 35, booking: [], screen: '2', timing: '3:30PM' }
     ];
     movieBooking.pushMovieList(movies);
 }
@@ -67,13 +67,39 @@ function movieUserPicked(event) {
     "use strict";
     movieSelected = event.target.selectedOptions[0].dataset.movieType;
     movieScreenSelected = event.target.selectedOptions[0].dataset.screenType;
-    var movieBookingDetails = movieBooking.getSeatsList(movieScreenSelected, movieSelected);
+    var movieBookingDetails = movieBooking.getSeatsList(movieScreenSelected, movieSelected)[0];
     showMovieSeats(movieBookingDetails);
 }
 function showMovieSeats(seatsInfo) {
     var seatsElm = document.getElementById('screenSeatsDisplayed');
-    var seatsFragment = document.createDocumentFragment();
-    
+    var rowSeatsLimit = seatsInfo.seatsLimit;
+    var rowSeatsFragment = document.createDocumentFragment();
+    var colSeatsFragment = document.createDocumentFragment();
+    seatsInfo.booking.forEach((eachSeats, rowSeatsTrack) => {
+        if (rowSeatsTrack > 0 &&  rowSeatsTrack % rowSeatsLimit == 0) {
+            // row completes
+            var rowSeats = document.createElement('div');
+            rowSeats.classList.add('seatsPosition');
+            rowSeats.appendChild(colSeatsFragment);
+            rowSeatsFragment.appendChild(rowSeats);
+            seatsElm.appendChild(rowSeatsFragment);
+            // col creation
+            var colSeats = document.createElement('div');
+            var colSeatsLabels = document.createTextNode(eachSeats.SeatNumber);
+            colSeats.classList.add('seats');
+            colSeats.appendChild(colSeatsLabels);
+            colSeatsFragment.appendChild(colSeats);
+        } else {
+             // col creation
+            var colSeats = document.createElement('div');
+            var colSeatsNumbering = document.createElement('span');
+            var colSeatsLabels = document.createTextNode(eachSeats.SeatNumber);
+            colSeats.classList.add('seats');
+            colSeatsNumbering.appendChild(colSeatsLabels);
+            colSeats.appendChild(colSeatsNumbering);
+            colSeatsFragment.appendChild(colSeats);
+        }
+    });
 }
 function generateMovieList(movieList, className) {
     var listFragment = document.createDocumentFragment();

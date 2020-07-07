@@ -11,3 +11,15 @@ body {
     width: 100%;
     background-color: steelblue;
 }
+
+.seatsPosition {
+    display: flex;
+    flex-direction: row;
+}
+.seats {
+    background-color: white;
+    border:1px solid gray;
+    height: 80px;
+    width: 80px;
+    margin: 10px;
+}
