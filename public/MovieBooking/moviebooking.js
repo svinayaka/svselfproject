@@ -90,7 +90,6 @@ function showMovieSeats(seatsInfo) {
     var rowSeatsLimit = seatsInfo.seatsLimit;
     var rowSeatsFragment = document.createDocumentFragment();
     var colSeatsFragment = document.createDocumentFragment();
-    debugger;
     seatsInfo.booking.forEach((eachSeats, rowSeatsTrack) => {
         if (rowSeatsTrack > 0 &&  rowSeatsTrack % rowSeatsLimit == 0) {
             // row completes
