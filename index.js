@@ -22,6 +22,7 @@ const dashboard = require('./public/DashBoard/dashboard.router');
 const webworker = require('./public/WebWorker/webworker.router');
 const pwanewsapp = require('./public/PWANewsApp/pwanewsapp.router');
 const cardshuffler = require('./public/CardShuffler/cardshuffler.router');
+const moviebooking = require('./public/MovieBooking/moviebooking.router');
 
 app.set("view engine", "pug");
 
@@ -44,6 +45,7 @@ app.use('/dashboard', dashboard);
 app.use('/webworker', webworker);
 app.use('/pwanewsapp', pwanewsapp);
 app.use('/cardshuffler', cardshuffler);
+app.use('/moviebooking', moviebooking);
 
 app.use('carouseImage', express.static(path.join(__dirname, '/public/Carousel/images')));
 

@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const path = require("path");
-var compression = require('compression');
+const compression = require('compression');
 const app = express();
 
 app.use(compression());
