@@ -10,7 +10,7 @@ var movieBooking = {};
                 var totalSeats = eachList.totalSeats;
                 eachList.booking = [];
                 for (var countSeats = 0 ; countSeats <= totalSeats; countSeats++) {
-                    eachList.booking.push({ SeatNumber: countSeats + 1, booked: false, bookedBy:'' });
+                    eachList.booking.push({ SeatNumber: countSeats + 1, bookSeat: false, bookedBy:'', bookConfirmed: false });
                 }
                 movieList.push(eachList)
             });
@@ -27,8 +27,19 @@ var movieBooking = {};
             }
         })
     }
-    movieBook.bookingSeats = function() {
-
+    movieBook.bookSeats = function(screen, movie, seat) {
+        var bookingInfo;
+        movieList.forEach((eachMovie) => {
+            if (eachMovie.movie == movie && eachMovie.screen == screen) {
+                eachMovie.booking.forEach((eachBooking) => {
+                    if (eachBooking.SeatNumber == seat) {
+                        eachBooking.bookSeat = !eachBooking.bookSeat;
+                        bookingInfo = { movie: movie, screen: screen, seatNumber: seat, status: eachBooking.bookSeat }
+                    }
+                })
+            }
+        });
+        return bookingInfo;
     }
 })(movieBooking);
 document.onreadystatechange = function() {
@@ -45,7 +56,8 @@ function initApplication() {
     "use strict";
     var movies = [
         { movie:'Avengers', perseatprice: '250', currency:'rs', totalSeatsBooked: '', seatsLimit:8, totalSeats: 48, booking: [], screen: '1', timing: '2:30PM' },
-        { movie:'Bell Bottom', perseatprice: '250', currency:'rs', totalSeatsBooked: '', seatsLimit:8, totalSeats: 35, booking: [], screen: '2', timing: '3:30PM' }
+        { movie:'Bell Bottom', perseatprice: '250', currency:'rs', totalSeatsBooked: '', seatsLimit:8, totalSeats: 35, booking: [], screen: '2', timing: '3:30PM' },
+        { movie:'Rangitharanga', perseatprice: '150', currency:'rs', totalSeatsBooked: '', seatsLimit:8, totalSeats: 25, booking: [], screen: '1', timing: '5:30PM' }
     ];
     movieBooking.pushMovieList(movies);
 }
@@ -59,7 +71,7 @@ function renderMovieApplication() {
 function moviePickerRender() {
     "use strict";
     var moviePickerElm = document.getElementById('moviePicker');
-    var moviePickerListElm = generateMovieList(movieBooking.getMovieList(), 'seats');
+    var moviePickerListElm = generateMovieList(movieBooking.getMovieList(), 'movieseats');
     moviePickerElm.appendChild(moviePickerListElm);
     moviePickerElm.addEventListener('change', movieUserPicked );
 }
@@ -86,21 +98,38 @@ function showMovieSeats(seatsInfo) {
             rowSeats.appendChild(colSeatsFragment);
             rowSeatsFragment.appendChild(rowSeats);
             seatsElm.appendChild(rowSeatsFragment);
+            seatsElm.addEventListener('click', seatSelectionToggler);
             // col creation
-            makeSeats(eachSeats);
-            colSeatsFragment.appendChild(makeSeats(eachSeats));
+            colSeatsFragment.appendChild(makeSeats(eachSeats, seatsInfo));
         } else {
             // col creation
-            makeSeats(eachSeats);
-            colSeatsFragment.appendChild(makeSeats(eachSeats));
+            colSeatsFragment.appendChild(makeSeats(eachSeats, seatsInfo));
         }
     });
 }
-function makeSeats(eachSeats) {
+function seatSelectionToggler(event) {
+    var seatInfo = event.target.dataset;
+    var selectedSeat = seatInfo.seatNumber;
+    var selectedScreen = seatInfo.seatScreen;
+    var selectedMovie = seatInfo.seatMovie;
+    var bookingInfo = movieBooking.bookSeats(selectedScreen, selectedMovie, selectedSeat);
+    if (bookingInfo.status) {
+        event.target.classList.add('seatsSelected');
+    } else {
+        event.target.classList.remove('seatsSelected');
+    }
+    
+    debugger;
+}
+function makeSeats(eachSeats, seatsInfo) {
     var colSeats = document.createElement('div');
     var colSeatsNumbering = document.createElement('span');
+    colSeatsNumbering.dataset.seatNumber = eachSeats.SeatNumber;
+    colSeatsNumbering.dataset.seatScreen = seatsInfo.screen;
+    colSeatsNumbering.dataset.seatMovie = seatsInfo.movie;
+    colSeatsNumbering.classList.add('seats');
     var colSeatsLabels = document.createTextNode(eachSeats.SeatNumber);
-    colSeats.classList.add('seats');
+    colSeats.classList.add('movieSeats');
     colSeatsNumbering.appendChild(colSeatsLabels);
     colSeats.appendChild(colSeatsNumbering);
     return colSeats;
