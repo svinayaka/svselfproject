@@ -15,6 +15,10 @@ body {
 .movie-container {
     padding: 1%;
 }
+.pickMovieSection {
+    height: 50px;
+    text-align: right;
+}
 .screenViewContainer {
     perspective: 100px;
     position: relative;
