@@ -65,8 +65,10 @@ function moviePickerRender() {
 }
 function movieUserPicked(event) {
     "use strict";
+    var screenUI = document.getElementById('screenView');
     movieSelected = event.target.selectedOptions[0].dataset.movieType;
     movieScreenSelected = event.target.selectedOptions[0].dataset.screenType;
+    screenUI.innerHTML = 'Screen ' + movieScreenSelected;
     var movieBookingDetails = movieBooking.getSeatsList(movieScreenSelected, movieSelected)[0];
     showMovieSeats(movieBookingDetails);
 }
