@@ -22,7 +22,7 @@ var movieBooking = {};
     }
     movieBook.getSeatsList = function(screen, movie) {
         return movieList.filter(eachMovie => {
-            if (eachMovie.screen == screen && eachMovie.movie == movie) {
+            if (eachMovie.screen == screen && eachMovie.movie.toLowerCase() == movie) {
                 return true;
             }
         })
@@ -61,10 +61,19 @@ function moviePickerRender() {
     var moviePickerElm = document.getElementById('moviePicker');
     var moviePickerListElm = generateMovieList(movieBooking.getMovieList(), 'seats');
     moviePickerElm.appendChild(moviePickerListElm);
-    moviePickerElm.addEventListener('change', function(event) {
-        movieSelected = event.target.selectedOptions[0].dataset.movieType;
-        movieScreenSelected = event.target.selectedOptions[0].dataset.screenType;
-    });
+    moviePickerElm.addEventListener('change', movieUserPicked );
+}
+function movieUserPicked(event) {
+    "use strict";
+    movieSelected = event.target.selectedOptions[0].dataset.movieType;
+    movieScreenSelected = event.target.selectedOptions[0].dataset.screenType;
+    var movieBookingDetails = movieBooking.getSeatsList(movieScreenSelected, movieSelected);
+    showMovieSeats(movieBookingDetails);
+}
+function showMovieSeats(seatsInfo) {
+    var seatsElm = document.getElementById('screenSeatsDisplayed');
+    var seatsFragment = document.createDocumentFragment();
+    
 }
 function generateMovieList(movieList, className) {
     var listFragment = document.createDocumentFragment();
