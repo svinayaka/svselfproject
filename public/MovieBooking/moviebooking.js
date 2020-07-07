@@ -90,6 +90,7 @@ function showMovieSeats(seatsInfo) {
     var rowSeatsLimit = seatsInfo.seatsLimit;
     var rowSeatsFragment = document.createDocumentFragment();
     var colSeatsFragment = document.createDocumentFragment();
+    debugger;
     seatsInfo.booking.forEach((eachSeats, rowSeatsTrack) => {
         if (rowSeatsTrack > 0 &&  rowSeatsTrack % rowSeatsLimit == 0) {
             // row completes
@@ -113,13 +114,14 @@ function seatSelectionToggler(event) {
     var selectedScreen = seatInfo.seatScreen;
     var selectedMovie = seatInfo.seatMovie;
     var bookingInfo = movieBooking.bookSeats(selectedScreen, selectedMovie, selectedSeat);
-    if (bookingInfo.status) {
-        event.target.classList.add('seatsSelected');
+    bookstatuCheck(event.target, bookingInfo.status);
+}
+function bookstatuCheck(elm, status) {
+    if (status) {
+        elm.classList.add('seatsSelected');
     } else {
-        event.target.classList.remove('seatsSelected');
+        elm.classList.remove('seatsSelected');
     }
-    
-    debugger;
 }
 function makeSeats(eachSeats, seatsInfo) {
     var colSeats = document.createElement('div');
@@ -128,6 +130,7 @@ function makeSeats(eachSeats, seatsInfo) {
     colSeatsNumbering.dataset.seatScreen = seatsInfo.screen;
     colSeatsNumbering.dataset.seatMovie = seatsInfo.movie;
     colSeatsNumbering.classList.add('seats');
+    bookstatuCheck(colSeatsNumbering, eachSeats.bookSeat);
     var colSeatsLabels = document.createTextNode(eachSeats.SeatNumber);
     colSeats.classList.add('movieSeats');
     colSeatsNumbering.appendChild(colSeatsLabels);
