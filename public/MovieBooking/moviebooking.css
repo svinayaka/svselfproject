@@ -21,7 +21,7 @@ body {
     text-align: center;
 }
 .screenView {
-    height: 60px;
+    height: 2vw;
     width: 80%;
     background: white;
     transform-style: preserve-3d;
