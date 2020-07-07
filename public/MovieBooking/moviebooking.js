@@ -91,17 +91,21 @@ function movieUserPicked(event) {
     generateMovieSeats(movieBookingDetails); // this used to render seats with data...
 }
 function updateMovieScreen(elm) {
+    "use strict";
     movieSelected = elm.selectedOptions[0].dataset.movieType;
     movieScreenSelected = elm.selectedOptions[0].dataset.screenType;
     screenUI.innerHTML = 'Screen ' + movieScreenSelected;
 }
 function fetchSeatsInformation() {
+    "use strict";
     return movieBooking.getSeatsList(movieScreenSelected, movieSelected)[0];
 }
 function generateMovieSeats(movieBookingDetails) {
+    "use strict";
     showMovieSeats(movieBookingDetails);
 }
 function showMovieSeats(seatsInfo) {
+    "use strict";
     var seatsElm = document.getElementById('screenSeatsDisplayed');
     seatsElm.innerHTML = '';
     var rowSeatsLimit = seatsInfo.seatsLimit;
@@ -125,6 +129,7 @@ function showMovieSeats(seatsInfo) {
     });
 }
 function seatSelectionToggler(event) {
+    "use strict";
     var seatInfo = event.target.dataset;
     var selectedSeat = seatInfo.seatNumber;
     var selectedScreen = seatInfo.seatScreen;
@@ -140,6 +145,7 @@ function bookstatuCheck(elm, status) {
     }
 }
 function makeSeats(eachSeats, seatsInfo) {
+    "use strict";
     var colSeats = document.createElement('div');
     var colSeatsNumbering = document.createElement('span');
     colSeatsNumbering.dataset.seatNumber = eachSeats.SeatNumber;
@@ -154,6 +160,7 @@ function makeSeats(eachSeats, seatsInfo) {
     return colSeats;
 }
 function generateMovieList(movieList, className) {
+    "use strict";
     var listFragment = document.createDocumentFragment();
     movieList.forEach((eachMovieList) => {
         var list = document.createElement('OPTION');
