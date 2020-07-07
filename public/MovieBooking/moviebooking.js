@@ -44,13 +44,15 @@ var movieBooking = {};
 })(movieBooking);
 document.onreadystatechange = function() {
     if (document.readyState === 'interactive') {
-        initApplication();
-        renderMovieApplication();
+        initApplication();  // initializing the movies...
+        renderMovieApplication(); // rendering the movie seats...
     }
 }
 //---------------------------------
 var movieSelected;
 var movieScreenSelected;
+var moviePickerElm = document.getElementById('moviePicker');
+var screenUI = document.getElementById('screenView');
 //---------------------------------
 function initApplication() {
     "use strict";
@@ -64,24 +66,39 @@ function initApplication() {
 function renderMovieApplication() {
     "use strict";
     moviePickerRender();
-    
 }
-
-//-------------------
-function moviePickerRender() {
+function moviePickerRender() { // this is used for drop down rendering and binding event...
     "use strict";
-    var moviePickerElm = document.getElementById('moviePicker');
     var moviePickerListElm = generateMovieList(movieBooking.getMovieList(), 'movieseats');
     moviePickerElm.appendChild(moviePickerListElm);
     moviePickerElm.addEventListener('change', movieUserPicked );
+    movieLoadSeats();
 }
+
+
+//-----------------------
+function movieLoadSeats() {
+    updateMovieScreen(moviePickerElm);
+    var movieBookingDetails = fetchSeatsInformation();
+    generateMovieSeats(movieBookingDetails);
+}
+
+// This is where seats get rendered and shown...
 function movieUserPicked(event) {
     "use strict";
-    var screenUI = document.getElementById('screenView');
-    movieSelected = event.target.selectedOptions[0].dataset.movieType;
-    movieScreenSelected = event.target.selectedOptions[0].dataset.screenType;
+    updateMovieScreen(event.target); // this used for updating the screen...
+    var movieBookingDetails = fetchSeatsInformation();
+    generateMovieSeats(movieBookingDetails); // this used to render seats with data...
+}
+function updateMovieScreen(elm) {
+    movieSelected = elm.selectedOptions[0].dataset.movieType;
+    movieScreenSelected = elm.selectedOptions[0].dataset.screenType;
     screenUI.innerHTML = 'Screen ' + movieScreenSelected;
-    var movieBookingDetails = movieBooking.getSeatsList(movieScreenSelected, movieSelected)[0];
+}
+function fetchSeatsInformation() {
+    return movieBooking.getSeatsList(movieScreenSelected, movieSelected)[0];
+}
+function generateMovieSeats(movieBookingDetails) {
     showMovieSeats(movieBookingDetails);
 }
 function showMovieSeats(seatsInfo) {
