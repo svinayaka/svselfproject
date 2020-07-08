@@ -22,9 +22,17 @@ var movieBooking = {};
     }
     movieBook.getSeatsList = function(screen, movie) {
         return movieList.filter(eachMovie => {
-            if (eachMovie.screen == screen && eachMovie.movie.toLowerCase() == movie) {
+            if (eachMovie.screen == screen && eachMovie.movie.toLowerCase() == movie.toLowerCase()) {
                 return true;
             }
+        })[0];
+    }
+    movieBook.setSeatsList = function(screen, movie, movieDetails) {
+        movieList = movieList.map(eachMovie => {
+            if (eachMovie.screen == screen && eachMovie.movie.toLowerCase() == movie.toLowerCase()) {
+                eachMovie = movieDetails;
+            }
+            return eachMovie;
         })
     }
     movieBook.bookSeats = function(screen, movie, seat) {
@@ -78,6 +86,7 @@ function moviePickerRender() { // this is used for drop down rendering and bindi
 
 //-----------------------
 function movieLoadSeats() { // This works for onLoad of the page...
+    "use strict";
     updateMovieScreenOnPageLoad(moviePickerElm);
     var movieBookingDetails = fetchSeatsInformation();
     generateMovieSeats(movieBookingDetails);
@@ -90,6 +99,7 @@ function movieUserPicked(event) { // This works for on selection within page...
 }
 //------------------------
 function updateMovieScreenOnPageLoad(elm) {
+    "use strict";
     if (window.localStorage.getItem('lastSelected')) {
         var lastSelectedOption = window.localStorage.getItem('lastSelected');
         Array.from(elm.options).forEach((eachOptions, id) => {
@@ -113,12 +123,17 @@ function fetchSeatsInformation() {
         movieSelected = localMovieDetails.movie;
         movieScreenSelected = localMovieDetails.screen;
         movieDetails = localMovieDetails.movieDetails;
+        movieBooking.setSeatsList(movieScreenSelected, movieSelected, movieDetails);
     } else {
-        movieDetails = movieBooking.getSeatsList(movieScreenSelected, movieSelected)[0];
-        window.localStorage.setItem(movieSelected, JSON.stringify({ screen: movieScreenSelected, movie: movieSelected, movieDetails: movieDetails }));
+        movieDetails = movieBooking.getSeatsList(movieScreenSelected, movieSelected);
+        updateLocalStorage(movieSelected, movieScreenSelected, movieDetails);
     }
-    window.localStorage.removeItem(movieSelected)
+    // window.localStorage.removeItem(movieSelected)
     return movieDetails;
+}
+function updateLocalStorage(movieSelected, movieScreenSelected, movieDetails) {
+    var movie = movieSelected.toLowerCase();
+    window.localStorage.setItem(movie, JSON.stringify({ screen: movieScreenSelected, movie: movieSelected, movieDetails: movieDetails }));
 }
 function generateMovieSeats(movieBookingDetails) {
     "use strict";
@@ -142,6 +157,7 @@ function showMovieSeats(seatsInfo) {
             seatsElm.addEventListener('click', seatSelectionToggler);
             // col creation
             colSeatsFragment.appendChild(makeSeats(eachSeats, seatsInfo));
+            
         } else {
             // col creation
             colSeatsFragment.appendChild(makeSeats(eachSeats, seatsInfo));
@@ -155,7 +171,8 @@ function seatSelectionToggler(event) {
     var selectedScreen = seatInfo.seatScreen;
     var selectedMovie = seatInfo.seatMovie;
     var bookingInfo = movieBooking.bookSeats(selectedScreen, selectedMovie, selectedSeat);
-    debugger;
+    var movieDetails = movieBooking.getSeatsList(selectedScreen, selectedMovie);
+    updateLocalStorage(selectedMovie, selectedScreen, movieDetails);
     bookstatuCheck(event.target, bookingInfo.status);
 }
 function bookstatuCheck(elm, status) {
