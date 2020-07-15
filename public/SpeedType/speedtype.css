@@ -31,9 +31,15 @@ main {
     position: fixed;
     width: 100%;
     background: #1a2832;
-    top: 0;
     left: 0;
     height: 50px;
+    transition: 0.5s;
+}
+.settings-form-container-show {
+    top: 0px;
+}
+.settings-form-container-hide {
+    top: -50px;
 }
 .settings-form-container form {
     height: inherit;

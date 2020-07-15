@@ -5,7 +5,7 @@ var speedType = (function() {
             var documentFrag = document.createDocumentFragment();
             var selectElm = document.createElement('select');
             var selectLabelElm = document.createElement('label');
-            selectElm.addEventListener('change', selectionChanged);
+            selectElm.addEventListener('change', onSettingClicked);
             selectLabelElm.htmlFor = id;
             selectLabelElm.id = labelId;
             selectLabelElm.classList.add(labelId);
@@ -25,7 +25,10 @@ var speedType = (function() {
 
 if (speedType) {
     (function() {
+        var selectFormContainer = document.getElementById('settings-form-container');
         var selectContainer = document.getElementById('settings-select-container');
+        var settingsbtn = document.getElementById('settings-btn');
+        settingsbtn.addEventListener('click', onSettingClicked.bind(this, selectFormContainer))
         var selectOptions = [
             {id: 'selectLabel', className: 'selectLabel', value: 'Easy'},
             {id: 'selectLabel', className: 'selectLabel', value: 'Medium'},
@@ -36,8 +39,18 @@ if (speedType) {
     })();
 }
 //---------default binding-------------//
-function selectionChanged(event) {
+function onSelectionChanged(event) {
 
+}
+function onSettingClicked(elm) {
+    debugger;
+    if (elm.classList.contains('settings-form-container-hide')) {
+        elm.classList.remove('settings-form-container-hide');
+        elm.classList.add('settings-form-container-show');
+    } else {
+        elm.classList.remove('settings-form-container-show');
+        elm.classList.add('settings-form-container-hide');
+    }
 }
 //-------------------------------------//
 //---------------------//
