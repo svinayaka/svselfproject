@@ -14,6 +14,7 @@ main {
     position: relative;
     height: 100%;
     width: 100%;
+    background-color: #253646;
 }
 
 
@@ -33,6 +34,27 @@ main {
     top: 0;
     left: 0;
     height: 50px;
+}
+.settings-form-container form {
+    height: inherit;
+}
+.settings-select-container {
+    color: white;
+    height: inherit;
+    text-align: center;
+    padding: 10px 2%;
+}
+.settings-select {
+    border: none;
+    outline: none;
+    height: 25px;
+    vertical-align: middle;
+}
+.selectLabel {
+    border: none;
+    outline: none;
+    height: 25px;
+    vertical-align: middle;
 }
 
 /*-------This is settings button customization (footer)-------*/
