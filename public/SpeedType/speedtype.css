@@ -1,0 +1,61 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+main {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+
+.settings-timeranout, .settings-timestart {
+    height: calc(100% - 88px);
+    position: absolute;
+    width: 100%;
+    top: 50px;
+    background-color: #253646;
+    color: white;
+}
+
+.settings-form-container {
+    position: fixed;
+    width: 100%;
+    background: #1a2832;
+    top: 0;
+    left: 0;
+    height: 50px;
+}
+
+/*-------This is settings button customization (footer)-------*/
+.settings-btn-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4%;
+    padding: 5px 10px;
+    background-color: #293442;
+}
+.settings-btn {
+    height: 100%;
+    width: 4%;
+    min-width: 30px;
+    max-width: 50px;
+    border-radius: 2px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background-color: white;
+}
+.settings-btn:hover {
+    background-color: whitesmoke;
+}

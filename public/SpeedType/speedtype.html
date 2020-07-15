@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link href="/SpeedType/speedtype.css" rel="stylesheet">
+        <title>Speed Type</title>
+    </head>
+    <body>
+        <main>
+            <audio controls>
+                <source src="horse.ogg" type="audio/ogg">
+                <source src="horse.mp3" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+            <section id="settings-form-container" class="settings-form-container">
+                <form id="settings-form">
+                    <div>
+                        <label for="settings-input" class="settings-label">Difficulty</label>
+                        <input id="settings-input" type="text" autofocus="autofocus" autocomplete="off">
+                    </div>
+                </form>
+            </section>
+            <section class="settings-timestart" id="settings-timestart">
+                <div>
+                    <p>Speed Typer</p>
+                </div>
+                <div>
+                    <p>Time Left: <span id="settings-timer">0</span></p>
+                    <p>Score: <span id="settings-score">0</span></p>
+                </div>
+                <div>
+                    <p id="settings-">Type the following:</p>
+                    <h3></h3>
+                </div>
+            </section>
+            <section class="settings-timeranout" id="settings-timeranout">
+                <div>
+                    <h3>Time Ran Out</h3>
+                </div>
+                <div>
+                    <p>Your final score is <span id="settings-timeover-finalscore"></span></p>
+                </div>
+            </section>
+            <section id="settings-btn-container" class="settings-btn-container">
+                <button id="settings-btn" class="settings-btn">
+                    &#9881;
+                </button>
+            </section>
+        </main>
+        <script src="/SpeedType/speedtype.js"></script>
+    </body>
+</html>
