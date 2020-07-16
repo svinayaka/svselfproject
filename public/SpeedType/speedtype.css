@@ -17,14 +17,28 @@ main {
     background-color: #253646;
 }
 
-
-.settings-timeranout, .settings-timestart {
+/*------------------------*/
+.settings-timer-container {
     height: calc(100% - 88px);
     position: absolute;
     width: 100%;
     top: 50px;
     background-color: #253646;
     color: white;
+    text-align: center;
+    padding: 25% 0%;
+}
+.settings-timestart, .settings-timeranout {
+    position: absolute;
+    padding: 2%;
+    margin: 0 0%;
+    display: inline-block;
+    width: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: #2e3f54;
+    border-radius: 4px;
 }
 
 .settings-form-container {
