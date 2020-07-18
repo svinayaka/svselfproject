@@ -5,6 +5,7 @@ var speedType = (function () {
         this.timer = 0;
         this.gameStart = false;
         this.difficulty = 'easy';
+        currentWord = '';
         var wordData = ["prefiguration", "archetype", "epitome", "guide", "holotype", "image", "loadstar", "lodestar", "microcosm", "original", "paradigm", "pilot", "prototype", "template", "templet", "type specimen"];
         var selectOptions = [
             { id: 'selectLabel', className: 'selectLabel', value: 'Easy' },
@@ -15,7 +16,7 @@ var speedType = (function () {
             var documentFrag = document.createDocumentFragment();
             var selectElm = document.createElement('select');
             var selectLabelElm = document.createElement('label');
-            selectElm.addEventListener('change', onSelectionChanged);
+            selectElm.addEventListener('change', onSelectionChanged.bind(this));
             selectLabelElm.htmlFor = id;
             selectLabelElm.id = labelId;
             selectLabelElm.classList.add(labelId);
@@ -80,11 +81,11 @@ var speedType = (function () {
         SpeedType.prototype.getAllDifficultLevel = function () {
             return selectOptions;
         }
-        SpeedType.prototype.getDifficultLevel = function (id) {
-            return selectOptions[id];
+        SpeedType.prototype.getDifficultLevel = function () {
+            return this.difficulty;
         }
-        SpeedType.prototype.setDifficult = function (diffLevel) {
-            this.difficulty = diffLevel;
+        SpeedType.prototype.setDifficultLevel = function (diffLevel) {
+            this.difficulty = selectOptions[diffLevel];
         }
         SpeedType.prototype.setScore = function (score) {
             this.score = score;
@@ -102,7 +103,11 @@ var speedType = (function () {
             return wordData;
         }
         SpeedType.prototype.randomWords = function () {
-            return wordData[Math.floor(Math.random() * Math.floor(wordData.length - 1))];
+            currentWord = wordData[Math.floor(Math.random() * Math.floor(wordData.length - 1))]
+            return currentWord;
+        }
+        SpeedType.prototype.getCurrentWord = function () {
+            return currentWord;
         }
     }
     return new SpeedType();
@@ -125,12 +130,11 @@ function generateStartGameInfo(list) {
         var selectFormContainer = document.getElementById('settings-form-container');
         var selectContainer = document.getElementById('settings-select-container');
         var settingsContainer = document.getElementById('settings-timer-container');
-        var settingsbtn = document.getElementById('settings-btn');
-        settingsbtn.addEventListener('click', onSettingClicked.bind(this, selectFormContainer))
         clearDOM(selectContainer);
         selectContainer.appendChild(speedType.renderDOMSelectComponent('settings-select', speedType.getAllDifficultLevel(), 'settings-Label'));
         settingsContainer.appendChild(speedType.renderDOMStartType('settings-timestart'));
         settingsContainer.appendChild(speedType.renderDOMEndType('settings-timeranout'));
+        bindAllEvents.call(speedType, selectFormContainer);
         init.call(speedType);
     };
 })(speedType);
@@ -143,6 +147,12 @@ function init() {
     var scoreElm = document.getElementById('settings-score-info');
     resetGame.call(this, scoreElm, timerElm);
     gameRender.call(this);
+}
+function bindAllEvents(selectFormContainer) {
+    var inputEnterElm = document.getElementById('settings-typeArea');
+    var settingsbtn = document.getElementById('settings-btn');
+    inputEnterElm.addEventListener('keypress', onEnterClicked.bind(this));
+    settingsbtn.addEventListener('click', onSettingClicked.bind(this, selectFormContainer));
 }
 function showHide(showElm, hideElm) {
     hideElm.style.display = 'none';
@@ -164,7 +174,7 @@ function gameRender() {
 }
 //---------default events binded-------------//
 function onSelectionChanged(event) {
-
+    updateGameDifficult.call(this);
 }
 function onSettingClicked(elm) {
     if (elm.classList.contains('settings-form-container-hide')) {
@@ -175,31 +185,67 @@ function onSettingClicked(elm) {
         elm.classList.add('settings-form-container-hide');
     }
 }
+function onEnterClicked(event) {
+    if (event.keyCode == 13 && event.key == 'Enter') {
+        var typedWord = event.target.value.toLowerCase();
+        var correctWord = this.getCurrentWord();
+        var currentScore = this.getScore();
+        var currentTimer = this.getTimer();
+        var difficultType = this.getDifficultLevel();
+        if (typedWord == correctWord) {
+            this.setScore(++currentScore);
+            incrementTimer.call(this, currentTimer, difficultType);
+            updateDOMScore.call(this);
+            updateDOMTimer.call(this);
+            updateDOMWord.call(this);
+            event.target.value = '';
+        }
+    }
+}
+function updateDOMWord() {
+    var wordElm = document.getElementById('settings-following-info');
+    var newWord = this.randomWords();
+    wordElm.innerHTML = newWord;
+}
+function updateDOMScore() {
+    var scoreElm = document.getElementById('settings-score-info');
+    scoreElm.innerHTML = this.getScore();
+}
+function updateDOMTimer() {
+    var timerElm = document.getElementById('settings-timer-info');
+    timerElm.innerHTML = this.getTimer();
+}
+function incrementTimer(currentTimer, difficultType) {
+    var domTimerElm = document.getElementById('settings-timer-info');
+    switch(difficultType.value) {
+        case 'Easy':
+            this.setTimer(6 + currentTimer); 
+            break;
+        case 'Medium' :
+            this.setTimer(4 + currentTimer); 
+            break;
+        case 'Hard' :
+            this.setTimer(2 + currentTimer); 
+            break;
+    }
+    domTimerElm.innerHTML = this.getTimer();
+
+}
 //-------------------------------------//
 function onReload(event) {
     var startElm = document.getElementById('settings-startGame');
     startElm.style.display = 'none';
-    var diffSelectionElm = document.getElementById('settings-select');
-    var diffLevelIndex = diffSelectionElm.selectedIndex;
-    var diffLevelType = this.getDifficultLevel(diffLevelIndex);
-    var domTimerElm = document.getElementById('settings-timer-info');
-    switch(diffLevelType.value) {
-        case 'Easy':
-            this.setTimer(10);
-            break;
-        case 'Medium': 
-            this.setTimer(5);
-            domTimerElm
-            break;
-        case 'Hard':
-            this.setTimer(2);
-            domTimerElm
-            break;
-    }
-    domTimerElm.innerHTML = this.getTimer();
+    updateGameDifficult.call(this);
     updateDOMGame.call(this);
     updateDOMGameTimer.call(this);
-    
+}
+function updateGameDifficult() {
+    var diffSelectionElm = document.getElementById('settings-select');
+    var diffLevelIndex = diffSelectionElm.selectedIndex;
+    this.setDifficultLevel(diffLevelIndex);
+    var currentTimer = this.getTimer();
+    var diffLevelType = this.getDifficultLevel();
+    incrementTimer.call(this, currentTimer, diffLevelType, 0);
 }
 function updateDOMGame() {
     var preTextShow = document.getElementById('settings-following');
@@ -207,12 +253,11 @@ function updateDOMGame() {
     textShow.innerHTML = this.randomWords();
 }
 function updateDOMGameTimer() {
-    var clockTick = this.getTimer();
     var domTimerInfo = document.getElementById('settings-timer-info');
     var refInterval = setInterval(() => {
-        clockTick--;
+        var clockTick = this.getTimer();
+        this.setTimer(--clockTick);
         domTimerInfo.innerHTML = clockTick;
-        console.log('loading');
         if (clockTick == 0) {
             gameTimeUp.call(this, clockTick, refInterval);
         }
