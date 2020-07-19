@@ -151,8 +151,10 @@ function init() {
 function bindAllEvents(selectFormContainer) {
     var inputEnterElm = document.getElementById('settings-typeArea');
     var settingsbtn = document.getElementById('settings-btn');
+    var startBtn = document.getElementById('settings-startGame');
     inputEnterElm.addEventListener('keypress', onEnterClicked.bind(this));
     settingsbtn.addEventListener('click', onSettingClicked.bind(this, selectFormContainer));
+    startBtn.addEventListener('click', onReload.bind(this));
 }
 function showHide(showElm, hideElm) {
     hideElm.style.display = 'none';
@@ -165,8 +167,6 @@ function resetGame(scoreReset, timeReset) {
     timeReset.innerHTML = 0;
 }
 function gameRender() {
-    var startBtn = document.getElementById('settings-startGame');
-    startBtn.addEventListener('click', onReload.bind(this));
     var startTime = document.getElementById('settings-timestart');
     startTime.style.display = 'block';
     var endTime = document.getElementById('settings-timeranout');
@@ -235,6 +235,7 @@ function incrementTimer(currentTimer, difficultType) {
 function onReload(event) {
     var startElm = document.getElementById('settings-startGame');
     startElm.style.display = 'none';
+    gameRender.call(this);
     updateGameDifficult.call(this);
     updateDOMGame.call(this);
     updateDOMGameTimer.call(this);
