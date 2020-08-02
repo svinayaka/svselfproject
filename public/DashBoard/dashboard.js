@@ -17,7 +17,7 @@
         var listElm = document.createElement('li');
         var hrefElm = document.createElement('a');
         listElm.className = className;
-        hrefElm.className = 'projectList';
+        hrefElm.className = 'projectListNames';
         hrefElm.href = projectInfo.url;
         hrefElm.target = '_blank';
         hrefElm.innerText = projectInfo.txt;

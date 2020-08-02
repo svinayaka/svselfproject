@@ -9,3 +9,27 @@ body {
 main {
     text-align: center;
 }
+
+.projectListNames {
+    text-decoration: none;
+    position: relative;
+}
+.projectListNames::after {
+    position: absolute;
+    border-top: 1px solid steelblue;
+    left: 0;
+    bottom: 0;
+    right: 100%;
+    content: '';
+    transition: 1s;
+}
+.projectListNames:hover {
+    text-decoration: none;
+}
+.projectListNames:hover::after {
+    position: absolute;
+    content: '';
+    left: 0;
+    bottom: 0;
+    right: 0%;
+}
