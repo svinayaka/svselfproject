@@ -1,19 +1,54 @@
-a {
+.ancUnderLine {
     text-decoration: none;
     position: relative;
 }
-a::after {
+.ancUnderLine::after {
     position: absolute;
     right: 100%;
     left: 0;
     bottom: 0;
-    content: '';
-    border-top: .1em solid #2F56B0;
+    content: "";
+    border-top: 0.1em solid #2f56b0;
     transition: 0.5s;
 }
-a:hover {
+.ancUnderLine:hover {
     text-decoration: none;
 }
-a:hover::after {
+.ancUnderLine:hover::after {
     right: 0%;
+}
+
+/*-------------------------------------------------------*/
+.ancToolTip {
+    position: relative;
+}
+.ancToolTip:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 1s linear 0s, opacity 1000ms;
+}
+.ancToolTip .tooltip {
+    position: absolute;
+    bottom: 20px;
+    left: calc(50% - 6em);
+    text-align: center;
+    width: 200px;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 1s linear 1000ms, opacity 1000ms;
+    background: whitesmoke;
+    border: 2px solid gray;
+    border-radius: 4px;
+}
+
+.tooltip::after {
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid gray;
+    position: absolute;
+    top: 36px;
+    left: calc(50% - 0.5em);
 }
