@@ -24,6 +24,7 @@ const pwanewsapp = require('./public/PWANewsApp/pwanewsapp.router');
 const cardshuffler = require('./public/CardShuffler/cardshuffler.router');
 const moviebooking = require('./public/MovieBooking/moviebooking.router');
 const speedtype = require('./public/SpeedType/speedtype.router');
+const cssanimation = require('./public/CSSAnimations/cssanimations.router');
 
 app.set("view engine", "pug");
 
@@ -48,6 +49,7 @@ app.use('/pwanewsapp', pwanewsapp);
 app.use('/cardshuffler', cardshuffler);
 app.use('/moviebooking', moviebooking);
 app.use('/speedtype', speedtype);
+app.use('/cssanimation', cssanimation);
 
 app.use('carouseImage', express.static(path.join(__dirname, '/public/Carousel/images')));
 
