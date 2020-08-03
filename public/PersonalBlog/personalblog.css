@@ -1,0 +1,8 @@
+.scrollMenuContainer {
+    display: flex;
+    flex-direction: row;
+}
+.menues {
+    flex: 1;
+    text-align: center;
+}

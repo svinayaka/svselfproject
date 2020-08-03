@@ -1,27 +1,28 @@
-var floatMenues = {};
-fetch('http://localhost:3000/personalblog/footerPage').then(resp => {
-    return resp.text()
-})
-    .then(resp => {
-        var footerElm = document.getElementById('footer');
-        footerElm.appendChild(DOMParser(resp));
-        invoke.call(floatMenues);
+(function() {
+    var floatMenues = {};
+    fetch('http://localhost:3000/personalblog/footerPage').then(resp => {
+        return resp.text()
     })
-    .catch(err => {
+        .then(resp => {
+            var footerElm = document.getElementById('footer');
+            footerElm.appendChild(DOMParser(resp));
+            invoke.call(floatMenues);
+        })
+        .catch(err => {
 
-    });
+        });
 
-function DOMParser(html) {
-    var template = document.createElement('template');
-    template.innerHTML = html;
-    return template.content.firstElementChild;
-}
-
+    function DOMParser(html) {
+        var template = document.createElement('template');
+        template.innerHTML = html;
+        return template.content.firstElementChild;
+    }
+})();  
 function invoke() {
     this.menues = [
-        { txt: 'Home', selected: true, id: 'HOME' },
-        { txt: 'About', selected: false, id: 'ABOUT' },
-        { txt: 'Contact', selected: false, id: 'CONTACT' },
+        { txt: 'Home', selected: true, id: 'HOME', type: 'menues' },
+        { txt: 'About', selected: false, id: 'ABOUT', type: 'menues' },
+        { txt: 'Contact', selected: false, id: 'CONTACT', type: 'menues' },
     ];
     this.__proto__.onSelection = function (selectionId) {
         this.menues.forEach(eachMenu => {
@@ -33,7 +34,7 @@ function invoke() {
     this.renderMenues = function () {
         var fragmentDOM = document.createDocumentFragment();
         this.menues.forEach(eachMenu => {
-            fragmentDOM.appendChild(createDiv(eachMenu));
+            fragmentDOM.appendChild(createDiv.call(this, eachMenu));
         })
         return fragmentDOM;
     }
@@ -48,8 +49,9 @@ function invoke() {
     function createDiv(divRef) {
         var divElm = document.createElement('div');
         var divTxt = document.createTextNode(divRef.txt);
-        divElm.className = divRef.id;
-        if (divElm.selected) divElm.classList.add('selectedMenu');
+        divElm.id = divRef.id;
+        divElm.className = divRef.type;
+        if (divRef.selected) divElm.classList.add('selectedMenu');
         else divElm.classList.remove('selectedMenu');
         divElm.appendChild(divTxt);
         divElm.addEventListener('click', onMenuClick.bind(this));
