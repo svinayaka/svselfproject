@@ -25,6 +25,7 @@ const cardshuffler = require('./public/CardShuffler/cardshuffler.router');
 const moviebooking = require('./public/MovieBooking/moviebooking.router');
 const speedtype = require('./public/SpeedType/speedtype.router');
 const cssanimation = require('./public/CSSAnimations/cssanimations.router');
+const personalblog = require('./public/PersonalBlog/personalblog.router');
 
 app.set("view engine", "pug");
 
@@ -50,6 +51,7 @@ app.use('/cardshuffler', cardshuffler);
 app.use('/moviebooking', moviebooking);
 app.use('/speedtype', speedtype);
 app.use('/cssanimation', cssanimation);
+app.use('/personalblog', personalblog);
 
 app.use('carouseImage', express.static(path.join(__dirname, '/public/Carousel/images')));
 
