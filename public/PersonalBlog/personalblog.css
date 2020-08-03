@@ -17,10 +17,13 @@ main {
 footer {
     height: 5%;
     background-color: #615d5d;
+    color: white;
 }
 .scrollMenuContainer {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    height: 100%;
 }
 .menues {
     flex: 1;
