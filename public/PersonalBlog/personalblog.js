@@ -1,6 +1,7 @@
 (function() {
     var floatMenues = {};
-    fetch('http://localhost:3000/personalblog/footerPage').then(resp => {
+    debugger;
+    fetch(window.location.origin + '/personalblog/footerPage').then(resp => {
         return resp.text()
     }).then(resp => {
         var footerElm = document.getElementById('footer');
