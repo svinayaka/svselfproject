@@ -7,7 +7,7 @@
         footerElm.appendChild(DOMParser(resp));
         invoke.call(floatMenues);
     }).catch(err => {
-
+        
     });
     function DOMParser(html) {
         var template = document.createElement('template');
