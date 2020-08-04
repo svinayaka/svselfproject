@@ -2,15 +2,13 @@
     var floatMenues = {};
     fetch('http://localhost:3000/personalblog/footerPage').then(resp => {
         return resp.text()
-    })
-        .then(resp => {
-            var footerElm = document.getElementById('footer');
-            footerElm.appendChild(DOMParser(resp));
-            invoke.call(floatMenues);
-        })
-        .catch(err => {
+    }).then(resp => {
+        var footerElm = document.getElementById('footer');
+        footerElm.appendChild(DOMParser(resp));
+        invoke.call(floatMenues);
+    }).catch(err => {
 
-        });
+    });
 
     function DOMParser(html) {
         var template = document.createElement('template');
@@ -58,7 +56,7 @@ function invoke() {
         return divElm;
     }
     function onMenuClick(event) {
-        debugger;
+        
     }
 
     var scrollMenuElm = document.getElementById('scrollMenuContainer');

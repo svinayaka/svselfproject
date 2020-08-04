@@ -14,5 +14,11 @@ router.get('/', (req, res, next) => {
 router.get('/footerPage', (req, res, next) => {
     res.sendFile(path.join(__dirname, '/personalblog.floatmenue.html'));
 });
+router.get('/aboutPage', (req, res, next) => {
+    res.sendFile(path.join(__dirname, '/personalblog.about.html'));
+})
+router.get('/profilePic', (req, res, next) => {
+    res.sendFile(path.join(__dirname, '/Images/MyProfile.jpg'));
+});
 
 module.exports = router;
