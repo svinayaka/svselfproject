@@ -42,7 +42,6 @@ function invoke() {
     this.__proto__.initializeMenu = function () {
         return this.renderMenues();
     }
-
     function createDiv(divRef) {
         var divElm = document.createElement('div');
         var divTxt = document.createTextNode(divRef.txt);
@@ -54,10 +53,7 @@ function invoke() {
         divElm.addEventListener('click', onMenuClick.bind(this));
         return divElm;
     }
-    function onMenuClick(event) {
-        
-    }
-
+    function onMenuClick(event) { }
     var scrollMenuElm = document.getElementById('scrollMenuContainer');
     scrollMenuElm.appendChild(this.initializeMenu());
 }

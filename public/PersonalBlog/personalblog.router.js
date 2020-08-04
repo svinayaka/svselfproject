@@ -16,7 +16,10 @@ router.get('/footerPage', (req, res, next) => {
 });
 router.get('/aboutPage', (req, res, next) => {
     res.sendFile(path.join(__dirname, '/personalblog.about.html'));
-})
+});
+router.get('/homePage', (req, res, next) => {
+    res.sendFile(path.join(__dirname, '/personalblog.home.html'));
+});
 router.get('/profilePic', (req, res, next) => {
     res.sendFile(path.join(__dirname, '/Images/MyProfile.jpg'));
 });
