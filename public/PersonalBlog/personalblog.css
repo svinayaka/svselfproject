@@ -31,8 +31,14 @@ footer {
     flex: 1;
     text-align: center;
     height: 100%;
-    line-height: 4.5vh;
-    min-width: 600px;
+    line-height: 5vh;
+    width: 33vw;
+    cursor: pointer;
+    transition: 1s;
+    font-weight: bold;
+}
+.menues:hover {
+    background-color: lightblue;
 }
 
 .scrollMenuContainer::-webkit-scrollbar-button {
@@ -43,7 +49,7 @@ footer {
     height: 4px;
 }
 .scrollMenuContainer::-webkit-scrollbar-track {
-    background: #dddcdc;        /* color of the tracking area */
+    background: #dddcdc;        
 }
 .scrollMenuContainer::-webkit-scrollbar-thumb {
     background-color: #615d5d;

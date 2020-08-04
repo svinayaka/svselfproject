@@ -1,6 +1,5 @@
 (function() {
     var floatMenues = {};
-    debugger;
     fetch(window.location.origin + '/personalblog/footerPage').then(resp => {
         return resp.text()
     }).then(resp => {
@@ -10,7 +9,6 @@
     }).catch(err => {
 
     });
-
     function DOMParser(html) {
         var template = document.createElement('template');
         template.innerHTML = html;
