@@ -67,7 +67,8 @@ function invoke() {
                 getDOMRequest(ORIGINALURL + ABOUTURL).then(aboutResponse.bind(this));
                 break;
             case 'HOME' :
-                getDOMRequest(ORIGINALURL + HOMEURL).then()
+                getDOMRequest(ORIGINALURL + HOMEURL).then(homeResponse.bind(this));
+                break;
         }
     }
     
@@ -89,12 +90,12 @@ function aboutResponse(resp) {
 function homeResponse(resp) {
     var mainElm = document.getElementById('main');
     mainElm.innerHTML = '';
-    var aboutPage = DOMParser(resp);
-    var aboutScript = document.createElement("script");
-    aboutScript.src = HOMEJS;
-    aboutScript.defer = true;
-    aboutPage.appendChild(aboutScript);
-    mainElm.appendChild(aboutPage);
+    var homePage = DOMParser(resp);
+    var homeScript = document.createElement("script");
+    homeScript.src = HOMEJS;
+    homeScript.defer = true;
+    homePage.appendChild(homeScript);
+    mainElm.appendChild(homePage);
 }
 function contactResponse(resp) {
     var mainElm = document.getElementById('main');
