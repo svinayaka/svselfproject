@@ -1,20 +1,17 @@
+var ORIGINALURL = window.location.origin;
+var FOOTERURL = '/personalblog/footerPage';
+var ABOUTURL = '/personalblog/aboutpage';
+
 (function() {
     var floatMenues = {};
-    fetch(window.location.origin + '/personalblog/footerPage').then(resp => {
-        return resp.text()
-    }).then(resp => {
-        var footerElm = document.getElementById('footer');
-        footerElm.appendChild(DOMParser(resp));
-        invoke.call(floatMenues);
-    }).catch(err => {
-        
-    });
-    function DOMParser(html) {
-        var template = document.createElement('template');
-        template.innerHTML = html;
-        return template.content.firstElementChild;
-    }
+    getDOMRequest(ORIGINALURL + FOOTERURL).then(footerResponse.bind(floatMenues)).catch(responseError);
 })();  
+function footerResponse(resp) {
+    var footerElm = document.getElementById('footer');
+    footerElm.appendChild(DOMParser(resp));
+    invoke.call(this);
+}
+
 function invoke() {
     this.menues = [
         { txt: 'Home', selected: true, id: 'HOME', type: 'menues' },
@@ -47,13 +44,43 @@ function invoke() {
         var divTxt = document.createTextNode(divRef.txt);
         divElm.id = divRef.id;
         divElm.className = divRef.type;
+        divElm.dataset.val = divRef.id;
         if (divRef.selected) divElm.classList.add('selectedMenu');
         else divElm.classList.remove('selectedMenu');
         divElm.appendChild(divTxt);
         divElm.addEventListener('click', onMenuClick.bind(this));
         return divElm;
     }
-    function onMenuClick(event) { }
+    function onMenuClick(event) { 
+        var menuSelected = event.target.dataset.val;
+        switch(menuSelected) {
+            case 'ABOUT' :
+                getDOMRequest(ORIGINALURL + ABOUTURL).then(aboutResponse.bind(this));
+                break;
+        }
+    }
+    function aboutResponse(resp) {
+        var mainElm = document.getElementById('main');
+        mainElm.innerHTML = '';
+        var aboutPage = DOMParser(resp);
+        var aboutScript = document.createElement("script");
+        aboutScript.src = ABOUTURL;
+        aboutScript.defer = true;
+        aboutPage.appendChild(aboutScript);
+        mainElm.appendChild(aboutPage);
+    }
     var scrollMenuElm = document.getElementById('scrollMenuContainer');
-    scrollMenuElm.appendChild(this.initializeMenu());
+    scrollMenuElm.appendChild(this.initializeMenu()); 
 }
+
+function getDOMRequest(url) {
+    return fetch(url).then(resp => {
+        return resp.text();
+    });
+}
+function DOMParser(html) {
+    var template = document.createElement('template');
+    template.innerHTML = html;
+    return template.content.firstElementChild;
+}
+function responseError(err) { /*TODO*/ };
