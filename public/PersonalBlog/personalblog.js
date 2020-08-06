@@ -1,6 +1,15 @@
+// SERVER URLs
 var ORIGINALURL = window.location.origin;
 var FOOTERURL = '/personalblog/footerPage';
 var ABOUTURL = '/personalblog/aboutpage';
+var HOMEURL = '/personalblog/homePage';
+var CONTACTURL = '/personalblog/contactPage';
+
+// LOCAL URLs
+var ABOUTJS = '/PersonalBlog/personalblog.about.js';
+var HOMEJS = '/PersonalBlog/personalblog.home.js';
+var CONTACTJS = '/PersonalBlog/personalblog.contact.js';
+
 
 (function() {
     var floatMenues = {};
@@ -57,22 +66,48 @@ function invoke() {
             case 'ABOUT' :
                 getDOMRequest(ORIGINALURL + ABOUTURL).then(aboutResponse.bind(this));
                 break;
+            case 'HOME' :
+                getDOMRequest(ORIGINALURL + HOMEURL).then()
         }
     }
-    function aboutResponse(resp) {
-        var mainElm = document.getElementById('main');
-        mainElm.innerHTML = '';
-        var aboutPage = DOMParser(resp);
-        var aboutScript = document.createElement("script");
-        aboutScript.src = ABOUTURL;
-        aboutScript.defer = true;
-        aboutPage.appendChild(aboutScript);
-        mainElm.appendChild(aboutPage);
-    }
+    
     var scrollMenuElm = document.getElementById('scrollMenuContainer');
     scrollMenuElm.appendChild(this.initializeMenu()); 
 }
 
+// DOM render response
+function aboutResponse(resp) {
+    var mainElm = document.getElementById('main');
+    mainElm.innerHTML = '';
+    var aboutPage = DOMParser(resp);
+    var aboutScript = document.createElement("script");
+    aboutScript.src = ABOUTJS;
+    aboutScript.defer = true;
+    aboutPage.appendChild(aboutScript);
+    mainElm.appendChild(aboutPage);
+}
+function homeResponse(resp) {
+    var mainElm = document.getElementById('main');
+    mainElm.innerHTML = '';
+    var aboutPage = DOMParser(resp);
+    var aboutScript = document.createElement("script");
+    aboutScript.src = HOMEJS;
+    aboutScript.defer = true;
+    aboutPage.appendChild(aboutScript);
+    mainElm.appendChild(aboutPage);
+}
+function contactResponse(resp) {
+    var mainElm = document.getElementById('main');
+    mainElm.innerHTML = '';
+    var aboutPage = DOMParser(resp);
+    var aboutScript = document.createElement("script");
+    aboutScript.src = CONTACTJS;
+    aboutScript.defer = true;
+    aboutPage.appendChild(aboutScript);
+    mainElm.appendChild(aboutPage);
+}
+
+// Common functions
 function getDOMRequest(url) {
     return fetch(url).then(resp => {
         return resp.text();
