@@ -85,7 +85,6 @@ function aboutResponse(resp) {
     var aboutPage = DOMParser(resp);
     var aboutScript = document.createElement("script");
     aboutScript.src = ABOUTJS;
-    aboutScript.defer = true;
     aboutPage.appendChild(aboutScript);
     mainElm.appendChild(aboutPage);
 }
