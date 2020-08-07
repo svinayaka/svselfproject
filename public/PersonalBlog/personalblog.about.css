@@ -7,30 +7,39 @@
     width: 100%;
     text-align: left;
 }
+@keyframes shiftLeftToRight {
+    from {right: 67%;}
+    to {right: 0%;}
+}
+
 .rightAboutPage {
     width: 100%;
     padding: 4%;
     align-self: center;
 }
-.rightGreeting {
-    
-}
-.rightProfile {
 
+.rightGreeting { animation: ProfileInfoDisplayAnimate 1s ease-in-out 0.5s; }
+.rightProfile { animation: ProfileInfoDisplayAnimate 1s ease-in-out 1s; }
+.rightPosition { animation: ProfileInfoDisplayAnimate 1s ease-in-out 1.5s; }
+.rightDescription { animation: ProfileInfoDisplayAnimate 1s ease-in-out 2s; }
+.rightGreeting, .rightProfile, .rightPosition, .rightDescription {
+    opacity: 0;
+    animation-fill-mode: forwards;
 }
-.rightDescription {
+@keyframes ProfileInfoDisplayAnimate {
+    from { opacity: 0;}
+    to { opacity: 1;}
+}
 
-}
 .rightConnect {
     color: inherit;
     text-decoration: none;
 }
-
-.rightConnect-Linkedin {  animation: rightConnectionShiftRightToLeft 1s ease-in 1s;}
-.rightConnect-Twitter { animation: rightConnectionShiftRightToLeft 1s ease-in 2s; }
-.rightConnect-Facebook { animation: rightConnectionShiftRightToLeft 1s ease-in 3s; }
+.rightConnect-Linkedin {  animation: rightConnectionShiftRightToLeft 1s ease-in 2.5s;}
+.rightConnect-Twitter { animation: rightConnectionShiftRightToLeft 1s ease-in 3s; }
+.rightConnect-Facebook { animation: rightConnectionShiftRightToLeft 1s ease-in 3.5s; }
 .rightConnect-Phone { animation: rightConnectionShiftRightToLeft 1s ease-in 4s; }
-.rightConnect-Email { animation: rightConnectionShiftRightToLeft 1s ease-in 5s; }
+.rightConnect-Email { animation: rightConnectionShiftRightToLeft 1s ease-in 4.5s; }
 .rightConnect-Linkedin, .rightConnect-Twitter, .rightConnect-Facebook, .rightConnect-Phone, .rightConnect-Email {
     position: relative;
     left: 10%;
@@ -55,7 +64,3 @@
     bottom: 0;
     left: 0;
 }
-@keyframes shiftLeftToRight {
-    from {right: 67%;}
-    to {right: 0%;}
-  }
