@@ -1,5 +1,6 @@
 // SERVER URLs
 var ORIGINALURL = window.location.origin;
+var BGURL = '/personalblog/backgroudPic';
 var FOOTERURL = '/personalblog/footerPage';
 var ABOUTURL = '/personalblog/aboutpage';
 var HOMEURL = '/personalblog/homePage';
@@ -129,3 +130,8 @@ window.addEventListener('visibilitychange', () => {
         console.log('InActive!')
       }
 });
+
+window.onload = function() {
+    var bodyElm = document.getElementsByTagName('body')[0];
+    bodyElm.background = ORIGINALURL + BGURL;
+}

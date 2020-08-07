@@ -22,7 +22,7 @@ body {
 
 main {
     height: 95vh;
-    background: #dddcdc;
+    background: transparent;
 }
 
 footer {

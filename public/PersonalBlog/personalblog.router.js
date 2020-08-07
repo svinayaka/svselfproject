@@ -23,5 +23,8 @@ router.get('/homePage', (req, res, next) => {
 router.get('/profilePic', (req, res, next) => {
     res.sendFile(path.join(__dirname, '/Images/MyProfile.png'));
 });
+router.get('/backgroudPic', (req, res, next) => {
+    res.sendFile(path.join(__dirname, '/Images/cool-background.png'));
+});
 
 module.exports = router;
