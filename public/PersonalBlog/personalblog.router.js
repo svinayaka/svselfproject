@@ -21,7 +21,7 @@ router.get('/homePage', (req, res, next) => {
     res.sendFile(path.join(__dirname, '/personalblog.home.html'));
 });
 router.get('/profilePic', (req, res, next) => {
-    res.sendFile(path.join(__dirname, '/Images/MyProfile.jpg'));
+    res.sendFile(path.join(__dirname, '/Images/MyProfile.png'));
 });
 
 module.exports = router;

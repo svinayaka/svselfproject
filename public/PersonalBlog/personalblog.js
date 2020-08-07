@@ -9,6 +9,7 @@ var CONTACTURL = '/personalblog/contactPage';
 var ABOUTJS = '/PersonalBlog/personalblog.about.js';
 var HOMEJS = '/PersonalBlog/personalblog.home.js';
 var CONTACTJS = '/PersonalBlog/personalblog.contact.js';
+var ABOUTCSS = '/PersonalBlog/personalblog.about.css';
 
 
 (function() {
