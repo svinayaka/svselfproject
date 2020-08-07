@@ -1,14 +1,18 @@
-// fetch().then(resp => {
-//     return resp.text()
-// }).then(resp => {
-//     var footerElm = document.getElementById('footer');
-//     footerElm.appendChild(DOMParser(resp));
-//     invoke.call(floatMenues);
-// }).catch(err => {
-    
-// });
-
-// function invoke() {
-
-// }
-debugger;
+(function() {
+    initialize();
+})();
+function initialize() {
+    var aboutPage = document.getElementById('aboutPage');
+    aboutPage.appendChild(createDiv().appendChild(createImg()));
+    aboutPage.appendChild(createDiv());
+}
+function createDiv() {
+    var divElm = document.createElement('div');
+    return divElm;
+}
+function createImg() {
+    var imgElm = document.createElement('img');
+    imgElm.src = ORIGINALURL + '/personalblog/profilePic';
+    imgElm.classList.add('myProfile');
+    return imgElm;
+}
