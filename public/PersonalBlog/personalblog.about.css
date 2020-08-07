@@ -3,7 +3,17 @@
     width: 100%;
     display: flex;
     overflow: hidden;
+    position: relative;
+    bottom: 580px;
+    opacity: 0;
+    animation: onLoadAboutPageAnimate 2.3s ease-in-out 0s;
+    animation-fill-mode: forwards;
 }
+@keyframes onLoadAboutPageAnimate {
+    from { opacity: 0; bottom: 580px; }
+    to { opacity: 1; bottom: 0%; }
+} 
+
 .leftAboutPage {
     position: relative;
     transition: 1s;
@@ -14,7 +24,6 @@
     width: 100%;
     height: 100%;
     text-align: left;
-
 }
 @keyframes shiftLeftToRight {
     from {right: 67%; opacity: 0;}
