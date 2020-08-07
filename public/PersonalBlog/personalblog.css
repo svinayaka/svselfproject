@@ -27,8 +27,9 @@ main {
 
 footer {
     height: 5%;
-    background-color: #615d5d;
-    color: white;
+    background-color: transparent;
+    color: #0263f4;
+    border: 1px solid #aed5ff;
 }
 .scrollMenuContainer {
     display: flex;
