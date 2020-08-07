@@ -121,3 +121,11 @@ function DOMParser(html) {
     return template.content.firstElementChild;
 }
 function responseError(err) { /*TODO*/ };
+
+window.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') {
+        console.log('Active!')
+      } else {
+        console.log('InActive!')
+      }
+});
