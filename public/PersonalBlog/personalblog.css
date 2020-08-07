@@ -52,6 +52,7 @@ footer {
 .menues:hover {
     background-image: linear-gradient(#d6f2ff, #7bc1e1);
     background-position: 0 calc(100% + 6px);
+    transition: 2s;
 }
 
 .scrollMenuContainer::-webkit-scrollbar-button {
