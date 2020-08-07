@@ -45,11 +45,13 @@ footer {
     line-height: 5vh;
     width: 33vw;
     cursor: pointer;
-    transition: 1s;
+    transition: 2s;
     font-weight: bold;
+    background-position: 0 0rem;
 }
 .menues:hover {
-    background-color: lightblue;
+    background-image: linear-gradient(#d6f2ff, #7bc1e1);
+    background-position: 0 calc(100% + 6px);
 }
 
 .scrollMenuContainer::-webkit-scrollbar-button {
