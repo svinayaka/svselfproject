@@ -1,4 +1,5 @@
 .aboutPage {
+    visibility: visible !important;
     height: 100%;
     width: 100%;
     display: flex;
@@ -15,7 +16,6 @@
 } 
 
 .leftAboutPage {
-    visibility: visible;
     position: relative;
     transition: 1s;
     right: 67%;
