@@ -15,6 +15,7 @@
 } 
 
 .leftAboutPage {
+    visibility: visible;
     position: relative;
     transition: 1s;
     right: 67%;

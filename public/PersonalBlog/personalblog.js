@@ -12,7 +12,7 @@ var HOMEJS = '/PersonalBlog/personalblog.home.js';
 var CONTACTJS = '/PersonalBlog/personalblog.contact.js';
 var ABOUTCSS = '/PersonalBlog/personalblog.about.css';
 
-
+var CONTENTDOMPAGE = '';
 (function() {
     var floatMenues = {};
     getDOMRequest(ORIGINALURL + FOOTERURL).then(footerResponse.bind(floatMenues)).catch(responseError);
@@ -96,6 +96,7 @@ function homeResponse(resp) {
     homeScript.src = HOMEJS;
     homeScript.defer = true;
     homePage.appendChild(homeScript);
+    CONTENTDOMPAGE = homePage;
     mainElm.appendChild(homePage);
 }
 function contactResponse(resp) {
@@ -106,6 +107,7 @@ function contactResponse(resp) {
     aboutScript.src = CONTACTJS;
     aboutScript.defer = true;
     aboutPage.appendChild(aboutScript);
+    CONTENTDOMPAGE = homePage;
     mainElm.appendChild(aboutPage);
 }
 
