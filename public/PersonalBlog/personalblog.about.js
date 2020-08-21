@@ -4,9 +4,9 @@
 })();
 function loadAboutStyleSheet() {
     var aboutPage = document.getElementById('aboutPage');
-    var fileref=document.createElement("link")
-    fileref.setAttribute("rel", "stylesheet")
-    fileref.setAttribute("type", "text/css")
+    var fileref=document.createElement("link");
+    fileref.setAttribute("rel", "stylesheet");
+    fileref.setAttribute("type", "text/css");
     fileref.setAttribute("href", ORIGINALURL + ABOUTCSS);
     aboutPage.appendChild(fileref);
 }
