@@ -1,0 +1,62 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --fullHeight: 100%;
+    --fullWidth: 100%;
+    --scoreBoardBG: lightgray;
+}
+
+body {
+    margin:0;
+    padding: 1%;
+    position: absolute;
+    height: var(--fullHeight);
+    width: var(--fullWidth);
+}
+
+#wildShootOut__page {
+    height: var(--fullHeight);
+    width: var(--fullWidth); 
+}
+
+#wildShootOut__game {
+    height: 10%; 
+    display: flex;
+    justify-content: space-between;  
+}
+
+#wildShootOut__score {
+    height: 20%; 
+}
+#wildShootOut__scoreBoard {
+    height: var(--fullHeight);
+    background-color: var(--scoreBoardBG);
+}
+
+#wildShootOut__board { }
+.wildShootOut__boardCards {
+    display: inline-block;
+    width: 20%;
+    height: 250px;
+    position: relative;
+    overflow: hidden;
+}
+.wildShootOut__boardCards__brick {
+    position: absolute;
+    width: var(--fullWidth); 
+    height: 50px;
+    z-index: 10;
+    bottom: 0;
+    left: 0;
+}
+.wildShootOut__boardCards__bad, .wildShootOut__boardCards__friend {
+    background-size: cover;
+    z-index: 1;
+    position: absolute;
+    height: 250px;
+    top: 250px;
+    width: var(--fullWidth);
+    left: 0;
+}

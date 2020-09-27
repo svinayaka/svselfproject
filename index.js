@@ -27,6 +27,7 @@ const speedtype = require('./public/SpeedType/speedtype.router');
 const cssanimation = require('./public/CSSAnimations/cssanimations.router');
 const personalblog = require('./public/PersonalBlog/personalblog.router');
 const linearSearch = require('./public/LinearSearch/linearsearch.router');
+const wildshootout = require('./public/WildShootOut/wildshootout.router');
 
 app.set("view engine", "pug");
 
@@ -54,6 +55,7 @@ app.use('/speedtype', speedtype);
 app.use('/cssanimation', cssanimation);
 app.use('/personalblog', personalblog);
 app.use('/linearSearch', linearSearch);
+app.use('/wildshootout', wildshootout);
 
 app.use('carouseImage', express.static(path.join(__dirname, '/public/Carousel/images')));
 
