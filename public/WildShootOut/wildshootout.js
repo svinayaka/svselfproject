@@ -80,9 +80,6 @@ function intervalBasedCard(cardId, cardElm) {
         (function(clsName, elmId, elm) {
             clearStartedGame = setTimeout(function() {
                 elm.classList.remove(clsName);
-                //var index = lastHideOut.indexOf(elmId);
-                //lastHideOut.splice(index, 1);
-                var maxExecute = (lastHideOut.length > 1) ? 1 : Math.floor(Math.random() * (3 - 1) + 1);
                 if (!gameOver) {
                     randomCardPicker();
                 } else {
