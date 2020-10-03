@@ -6,17 +6,22 @@ var score = 0;
 var gameBoardCards = 8;
 var tries = 3;
 var popNumber = 2; 
+var timer = 100;
+var timerRef = null;
 
 var startBtn = document.getElementById('wildShootOut__gameStart');
 var endBtn = document.getElementById('wildShootOut__gameEnd');
 var audioElm = document.getElementById('playAudio');
 var wildScoreBoard = document.getElementById('wildShootOut__scoreBoard');
 var wildScoreBoardTries = document.getElementById('wildShootOut__scoreBoardTriesLeft');
+var wildScoreBoardTimer = document.getElementById('wildShootout__scoreBoardTimer');
 
 var gameBoard = document.getElementById('wildShootOut__board');
 
 startBtn.addEventListener('click', startGame);
-endBtn.addEventListener('click', endGame)
+endBtn.addEventListener('click', endGame);
+
+
 
 function startGame() {
     audioElm.play();
@@ -25,6 +30,9 @@ function startGame() {
     startBtn.disabled = true;
     endBtn.disabled = false;
     gameOver = false;
+    timerRef = setInterval(function() {
+        wildScoreBoardTimer.innerHTML = `Timer: ${--timer}`;
+    }, 1000);
 }
 
 function endGame() {
@@ -33,6 +41,7 @@ function endGame() {
     startBtn.disabled = false;
     endBtn.disabled = true;
     gameOver = true;
+    window.clearInterval(timerRef);
 }
 
 function createGameBoard() {
