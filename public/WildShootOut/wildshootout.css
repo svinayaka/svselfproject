@@ -6,6 +6,7 @@
     --fullHeight: 100%;
     --fullWidth: 100%;
     --scoreBoardBG: lightgray;
+    --scoreInfo: gray;
 }
 
 body {
@@ -28,11 +29,16 @@ body {
 }
 
 #wildShootOut__score {
+    display:flex;
     height: 20%; 
 }
-#wildShootOut__scoreBoard {
+#wildShootOut__scoreBoard, #wildShootOut__scoreBoardTriesLeft {
+    flex: 1;
     height: var(--fullHeight);
     background-color: var(--scoreBoardBG);
+    text-align: center;
+    font-size: 12vh;
+    color: var(--scoreInfo);
 }
 
 #wildShootOut__board { 

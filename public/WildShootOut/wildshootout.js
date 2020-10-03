@@ -10,6 +10,8 @@ var popNumber = 2;
 var startBtn = document.getElementById('wildShootOut__gameStart');
 var endBtn = document.getElementById('wildShootOut__gameEnd');
 var audioElm = document.getElementById('playAudio');
+var wildScoreBoard = document.getElementById('wildShootOut__scoreBoard');
+var wildScoreBoardTries = document.getElementById('wildShootOut__scoreBoardTriesLeft');
 
 var gameBoard = document.getElementById('wildShootOut__board');
 
@@ -26,6 +28,8 @@ function startGame() {
 }
 
 function endGame() {
+    audioElm.pause();
+    audioElm.currentTime = 0;
     startBtn.disabled = false;
     endBtn.disabled = true;
     gameOver = true;
@@ -57,15 +61,17 @@ function createGameBoard() {
 
 function shootout(event) {
     var shootType = event.target.dataset.target;
-    (shootType == 'good') ? ++score : --tries; 
+    (shootType == 'bad') ? ++score : --tries; 
     if (tries <= 0) {
         endGame();
     } 
-    updateScoreBoard();
+    debugger;
+    updateScoreBoard(score, tries);
 }
 
-function updateScoreBoard() {
-    
+function updateScoreBoard(scores, tries) {
+    wildScoreBoard.innerHTML = `Score: ${scores}`;
+    wildScoreBoardTries.innerHTML = `Tries: ${tries}`; 
 }
 
 function startGameBoard() {
