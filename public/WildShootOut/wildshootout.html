@@ -10,11 +10,14 @@
         <link rel="stylesheet" href="">
     </head>
     <body>
-        <main id="wildShootOut__page">
+        <main id="wildShootOut__page" >
+            <audio autoplay loop id="playAudio">
+                <source src="./music/Illusionary_Daytime.mp3" type="audio/mp3">
+            </audio>
             <section id="wildShootOut__game">
                 <input id="wildShootOut__gameStart" type="button" value="Start game">
                 <p id="wildShootOut__gamename">Wild Shoot Out Game</p>
-                <input id="wildShootOut__gameEnd" type="button" value="End game">
+                <input id="wildShootOut__gameEnd" type="button" value="End game" disabled>
             </section>
             <section id="wildShootOut__score">
                 <div id="wildShootOut__scoreBoard">
