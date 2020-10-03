@@ -5,7 +5,8 @@
         { txt: 'Memory Game', url: window.location.origin + '/memorygame/' },
         { txt: 'Card Shuffler', url: window.location.origin + '/cardshuffler/' },
         { txt: 'Movie Booking', url: window.location.origin + '/moviebooking/' },
-        { txt: 'Web Worker', url: window.location.origin + '/webworker/' }
+        { txt: 'Web Worker', url: window.location.origin + '/webworker/' },
+        { txt: 'Wild Shooter', url: window.location.origin + '/wildshootout/' }
     ];
     function generateProjectList() {
         projectList.forEach(function (eachProject) {
