@@ -21,9 +21,20 @@ var gameBoard = document.getElementById('wildShootOut__board');
 startBtn.addEventListener('click', startGame);
 endBtn.addEventListener('click', endGame);
 
-
+function reset() {
+    lastHideOut = [];
+    gameOver = false;
+    clearStartedGame = null;
+    score = 0;
+    gameBoardCards = 8;
+    tries = 3;
+    popNumber = 2; 
+    timer = 100;
+    timerRef = null;
+}
 
 function startGame() {
+    reset();
     audioElm.play();
     createGameBoard();
     startGameBoard();
@@ -75,7 +86,6 @@ function shootout(event) {
     if (tries <= 0) {
         endGame();
     } 
-    debugger;
     updateScoreBoard(score, tries);
 }
 

@@ -30,19 +30,21 @@ body {
 
 #wildShootOut__score {
     display:flex;
-    height: 20%; 
+    /* height: 20%;  */
+    height: 10vh;
 }
 #wildShootOut__scoreBoard, #wildShootOut__scoreBoardTriesLeft, #wildShootout__scoreBoardTimer {
     flex: 1;
     height: var(--fullHeight);
     background-color: var(--scoreBoardBG);
     text-align: center;
-    font-size: 12vh;
+    font-size: calc(3vh + 3vw);
     color: var(--scoreInfo);
 }
 
 #wildShootOut__board { 
     border: 1px solid gray;
+    height: 80%;
 }
 .wildShootOut__boardCards {
     display: inline-block;
