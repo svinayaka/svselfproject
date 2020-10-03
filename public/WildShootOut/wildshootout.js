@@ -32,6 +32,7 @@ function startGame() {
     gameOver = false;
     timerRef = setInterval(function() {
         wildScoreBoardTimer.innerHTML = `Timer: ${--timer}`;
+        if (timer <= 0) endGame();
     }, 1000);
 }
 
