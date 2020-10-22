@@ -21,8 +21,8 @@ function randomLeftRightPercentage() {
 function randomNumbers(info) {
 
     info.interCountRef = setInterval(function() {
-        info.firstCount.innerHTML = Math.floor(Math.random() * 25);
-        info.secondCount.innerHTML = Math.floor(Math.random() * 25);
+        info.firstCount.innerHTML = Math.floor(Math.random() * 15);
+        info.secondCount.innerHTML = Math.floor(Math.random() * 15);
         
     }, 6000);
 }
