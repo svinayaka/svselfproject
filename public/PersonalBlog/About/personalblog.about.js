@@ -1,4 +1,5 @@
 (function() {
+    debugger;
     loadAboutStyleSheet();
     loadProfilePic();
 })();

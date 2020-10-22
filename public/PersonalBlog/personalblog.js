@@ -7,14 +7,15 @@ var HOMEURL = '/personalblog/homePage';
 var CONTACTURL = '/personalblog/contactPage';
 
 // LOCAL URLs
-var ABOUTJS = '/PersonalBlog/personalblog.about.js';
-var HOMEJS = '/PersonalBlog/personalblog.home.js';
-var CONTACTJS = '/PersonalBlog/personalblog.contact.js';
-var ABOUTCSS = '/PersonalBlog/personalblog.about.css';
+var ABOUTJS = '/PersonalBlog/About/personalblog.about.js';
+var HOMEJS = '/PersonalBlog/Home/personalblog.home.js';
+var CONTACTJS = '/PersonalBlog/Contact/personalblog.contact.js';
+var ABOUTCSS = '/PersonalBlog/About/personalblog.about.css';
 
 var CONTENTDOMPAGE = '';
 (function() {
     var floatMenues = {};
+    debugger;
     getDOMRequest(ORIGINALURL + FOOTERURL).then(footerResponse.bind(floatMenues)).catch(responseError);
 })();  
 function footerResponse(resp) {
@@ -66,10 +67,14 @@ function invoke() {
         var menuSelected = event.target.dataset.val;
         switch(menuSelected) {
             case 'ABOUT' :
+                debugger;
                 getDOMRequest(ORIGINALURL + ABOUTURL).then(aboutResponse.bind(this));
                 break;
             case 'HOME' :
                 getDOMRequest(ORIGINALURL + HOMEURL).then(homeResponse.bind(this));
+                break;
+            case 'CONTACT' :
+                getDOMRequest(ORIGINALURL + CONTACTURL).then(homeResponse.bind(this));
                 break;
         }
     }
