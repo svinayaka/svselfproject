@@ -33,7 +33,7 @@ function beginGame(info) {
             info.interValRef = setInterval(function() {
                 info.countElm.style.left = randomLeftRightPercentage();
                 info.countElm.style.top = randomTopBottomPercentage();
-            }, 6000);
+            }, 9000);
         }
         randomNumbers(info);
         info.player.play()
