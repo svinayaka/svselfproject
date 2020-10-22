@@ -24,7 +24,7 @@ function randomNumbers(info) {
         info.firstCount.innerHTML = Math.floor(Math.random() * 15);
         info.secondCount.innerHTML = Math.floor(Math.random() * 15);
         
-    }, 6000);
+    }, 9000);
 }
 
 function beginGame(info) {
