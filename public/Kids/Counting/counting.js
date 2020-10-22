@@ -19,11 +19,11 @@ function randomLeftRightPercentage() {
 }
 
 function randomNumbers(info) {
-
+    info.firstCount.innerHTML = Math.floor(Math.random() * 15);
+    info.secondCount.innerHTML = Math.floor(Math.random() * 15);
     info.interCountRef = setInterval(function() {
         info.firstCount.innerHTML = Math.floor(Math.random() * 15);
         info.secondCount.innerHTML = Math.floor(Math.random() * 15);
-        
     }, 9000);
 }
 
