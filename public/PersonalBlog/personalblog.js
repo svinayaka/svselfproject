@@ -15,7 +15,6 @@ var ABOUTCSS = '/PersonalBlog/About/personalblog.about.css';
 var CONTENTDOMPAGE = '';
 (function() {
     var floatMenues = {};
-    debugger;
     getDOMRequest(ORIGINALURL + FOOTERURL).then(footerResponse.bind(floatMenues)).catch(responseError);
 })();  
 function footerResponse(resp) {
@@ -67,7 +66,6 @@ function invoke() {
         var menuSelected = event.target.dataset.val;
         switch(menuSelected) {
             case 'ABOUT' :
-                debugger;
                 getDOMRequest(ORIGINALURL + ABOUTURL).then(aboutResponse.bind(this));
                 break;
             case 'HOME' :
