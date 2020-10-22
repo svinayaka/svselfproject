@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/Kids/Counting/counting.css">
+    </head>
+    <body>
+        
+        <header id="gameConfig">
+            <input id="beginGame" type="button" value="Start"/>
+            <audio id="player" autoplay="true" loop preload="auto">
+                <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg"></audio>
+            <input id="endGame" type="button" value="End"/>
+        </header>
+        <main id="gameContainer">
+            <div id="gameCount">
+                <p class="count" id="firstCount"></p>
+                <p class="count">+</p>
+                <p class="count" id="secondCount"></p>
+            </div>
+            <div id="gameTotal"></div>
+        </main>
+        <script src="/Kids/Counting/counting.js"></script>
+    </body>
+</html>

@@ -1,0 +1,41 @@
+:root {
+
+}
+
+
+body {
+    box-sizing: border-box;
+    background: #e8e0cf;
+}
+#gameConfig {
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    height: 10%;
+}
+#gameContainer {
+    position: absolute;
+    height: 90%;
+    width: 100%;
+    top: 10%;
+    left: 0%;
+}
+#gameCount {
+    display: flex;
+    background: #4c4042;
+    width: calc(100% - 68vw);
+    position: absolute;
+    justify-content: center;
+}
+
+.count {
+    user-select: none;
+    border-radius: 39px;
+    background: #f3ddb4;
+    height: 10vw;
+    width: 10vw;
+    text-align: center;
+    line-height: 10vw;
+    font-size: 7vw;
+    margin: 1%;
+}

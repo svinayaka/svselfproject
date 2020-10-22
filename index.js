@@ -29,6 +29,8 @@ const personalblog = require('./public/PersonalBlog/personalblog.router');
 const linearSearch = require('./public/LinearSearch/linearsearch.router');
 const wildshootout = require('./public/WildShootOut/wildshootout.router');
 
+const kidCounting = require('./public/Kids/Counting/counting.router');
+
 app.set("view engine", "pug");
 
 app.use(express.static(path.join(__dirname + '/public')));
@@ -56,6 +58,8 @@ app.use('/cssanimation', cssanimation);
 app.use('/personalblog', personalblog);
 app.use('/linearSearch', linearSearch);
 app.use('/wildshootout', wildshootout);
+
+app.use('/kidCounting', kidCounting);
 
 app.use('carouseImage', express.static(path.join(__dirname, '/public/Carousel/images')));
 
